@@ -1,6 +1,7 @@
 import { getExistingGoals, getDisabledGoalIds, saveDisabledGoalIds, saveGoals, updateGoals } from "../storage.js";
-import { handleGoalErrorMessage, handleGoalSuccessMessage, clearErrorAndSuccessMessage } from "../goals.js";
+import { handleGoalSuccessMessage, handleGoalErrorMessage, clearErrorAndSuccessMessage } from "../goals/goalMessage.js";
 import { openDeleteGoalConfirmation } from "../modals.js";
+import { openEditDialog } from "../goals/goalEditor.js";
 
 
 export function loadGoals() {
@@ -129,6 +130,9 @@ function initializeGoalButtons(clone, goal, index){
 
         const moveDownButton = clone.querySelector(".move-down-button");
         moveDownButton.addEventListener("click", () => moveItem(getExistingGoals(), index, +1))
+
+        const editGoalButton = clone.querySelector(".edit-goal-button");
+        editGoalButton.addEventListener("click", () => openEditDialog(goal))
 }
 
 // Disable Goals

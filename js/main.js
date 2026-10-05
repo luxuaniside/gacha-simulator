@@ -6,5 +6,5 @@ import { initalizeWishingResources, initializePityResources } from "./resources.
 initalizeWishingResources();
 initializePityResources();
 
-import { initializeGoalForm } from "./goals.js";
-initializeGoalForm()
+import { initializeGoalsPage } from "./goals/goalPage.js";
+initializeGoalsPage()

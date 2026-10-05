@@ -1,6 +1,6 @@
 import { deleteGoal, loadGoals } from "./components/goalCards.js";
 import { deleteAllGoals } from "./storage.js";
-import { handleGoalSuccessMessage } from "./goals.js";
+import { handleGoalSuccessMessage } from "./goals/goalMessage.js";
 
 // Goal Deletion
 export function openDeleteGoalConfirmation(goalUUID) {

@@ -28,3 +28,30 @@
     justify-content: flex-end;
     gap: 0.75rem;
 }
+
+#edit-goal-dialog {
+    width: min(92vw, 54rem);
+    max-height: 90dvh;
+    overflow-y: auto;
+    border: 0;
+}
+
+#edit-goal-dialog #edit-goals-form {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+@media (max-width: 560px) {
+    #edit-goal-dialog {
+        width: calc(100vw - 1rem);
+        max-height: calc(100dvh - 1rem);
+        padding: 0.75rem;
+    }
+
+    #edit-goals-form .form-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}

@@ -11,6 +11,17 @@ export function deleteAllGoals(){
     localStorage.clear("goals");
 }
 
+export function updateEditedGoal(editedGoal) {
+    const goals = getExistingGoals();
+
+    const updatedGoals = goals.map(goal =>
+        goal.goal_uuid === editedGoal.goal_uuid
+            ? editedGoal
+            : goal
+    );
+
+    saveGoals(updatedGoals);
+}
 export function updateGoals(goal){
     const goals = getExistingGoals()
     goals.push(goal);

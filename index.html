@@ -508,54 +508,69 @@
     <dialog class="modal" id="edit-goal-dialog" aria-labelledby="edit-goal-title">
         <form class="form" id="edit-goals-form">
             <h2>Edit Goal</h2>
+
             <div class="form-grid">
                 <div class="form-field">
-                    <label for="goals-form-item-type">Item Type</label>
-                    <select id="goals-form-item-type" name="goal-item-type">
+                    <label for="edit-goal-item-type">Item Type</label>
+                    <select id="edit-goal-item-type" name="goal-item-type">
                         <option value="character">Character</option>
                         <option value="weapon">Weapon</option>
                     </select>
                 </div>
+
                 <div class="form-field">
-                    <label for="goals-form-item-rarity">Item Rarity</label>
-                    <select id="goals-form-item-rarity" name="goal-item-rarity">
+                    <label for="edit-goal-item-rarity">Item Rarity</label>
+                    <select id="edit-goal-item-rarity" name="goal-item-rarity">
                         <option value="five">5✦</option>
                         <option value="four">4✦</option>
                     </select>
                 </div>
+
                 <div class="form-field">
-                    <label for="goals-form-goal-name">Goal Name</label>
-                    <input id="goals-form-goal-name" type="text" placeholder="Optional Goal Name" name="goal-name">
+                    <label for="edit-goal-name">Goal Name</label>
+                    <input id="edit-goal-name" type="text" placeholder="Optional Goal Name" name="goal-name">
                 </div>
+
                 <div class="form-field">
-                    <label for="goals-form-banner">Select Banner</label>
-                    <select id="goals-form-banner" name="goal-banner">
-                        <option> Default Banner </option>
+                    <label for="edit-goal-banner">Select Banner</label>
+                    <select id="edit-goal-banner" name="goal-banner">
+                        <option>Default Banner</option>
                     </select>
                 </div>
             </div>
-            <fieldset id="goals-form-character-fieldset" class="goals-item-fieldset">
+
+            <fieldset id="edit-goal-character-fieldset" class="goals-item-fieldset">
                 <legend>Character</legend>
+
                 <div class="form-grid">
                     <div class="form-field">
-                        <label for="goals-form-character-item-name">Character Name</label>
-                        <select id="goals-form-character-item-name" name="item-name">
+                        <label for="edit-goal-character-item-name">
+                            Character Name
+                        </label>
+
+                        <select id="edit-goal-character-item-name" name="item-name">
                             <option>No items found</option>
                         </select>
                     </div>
+
                     <div class="form-field">
-                        <label for="goals-form-character-target-count">Constellation Target</label>
-                        <input id="goals-form-character-target-count" min="0" max="6" name="item-copies-target"
+                        <label for="edit-goal-character-target-count">
+                            Constellation Target
+                        </label>
+
+                        <input id="edit-goal-character-target-count" min="0" max="6" name="item-copies-target"
                             type="number" value="0">
                     </div>
                 </div>
+
                 <div class="checkbox-container item-high-priority-checkbox-field">
-                    <label class="checkbox-field high-priority-checkbox" for="goals-form-character-item-high-priority">
+                    <label class="checkbox-field high-priority-checkbox" for="edit-goal-character-item-high-priority">
                         High Priority Goal
 
                         <span class="help">
-                            <button class="help-button" type="button"
-                                aria-label="Help for High Priority Goal">?</button>
+                            <button class="help-button" type="button" aria-label="Help for High Priority Goal">
+                                ?
+                            </button>
 
                             <span class="help-tooltip" role="tooltip">
                                 <strong>High Priority Goals</strong> keep pulling until the Item Target is met.
@@ -565,44 +580,52 @@
 
                                 <br><br>
                                 <strong>5✦ Characters:</strong> Cannot think of a real use for Low Priority, but
-                                you may be able to
-                                think of something.
+                                you may be able to think of something.
+
                                 <br><br>
                                 <strong>4✦ Characters:</strong> See how many copies you would obtain
                                 while pulling for a 5✦ target.
-
-
                             </span>
                         </span>
 
-                        <input id="goals-form-character-item-high-priority" name="item-high-priority" type="checkbox"
+                        <input id="edit-goal-character-item-high-priority" name="item-high-priority" type="checkbox"
                             checked>
                     </label>
                 </div>
-
             </fieldset>
-            <fieldset id="goals-form-weapon-fieldset" class="goals-item-fieldset" hidden>
+
+            <fieldset id="edit-goal-weapon-fieldset" class="goals-item-fieldset" hidden>
                 <legend>Weapon</legend>
+
                 <div class="form-grid">
                     <div class="form-field">
-                        <label for="goals-form-weapon-item-name">Weapon Name</label>
-                        <select id="goals-form-weapon-item-name" name="item-name">
+                        <label for="edit-goal-weapon-item-name">
+                            Weapon Name
+                        </label>
+
+                        <select id="edit-goal-weapon-item-name" name="item-name">
                             <option>No items found</option>
                         </select>
                     </div>
+
                     <div class="form-field">
-                        <label for="goals-form-weapon-target-count">Refinement Target</label>
-                        <input id="goals-form-weapon-target-count" min="1" max="5" name="item-copies-target"
+                        <label for="edit-goal-weapon-target-count">
+                            Refinement Target
+                        </label>
+
+                        <input id="edit-goal-weapon-target-count" min="1" max="5" name="item-copies-target"
                             type="number" value="1">
                     </div>
                 </div>
+
                 <div class="checkbox-container item-high-priority-checkbox-field">
-                    <label class="checkbox-field high-priority-checkbox" for="goals-form-weapon-item-high-priority">
+                    <label class="checkbox-field high-priority-checkbox" for="edit-goal-weapon-item-high-priority">
                         High Priority Goal
 
                         <span class="help">
-                            <button class="help-button" type="button"
-                                aria-label="Help for High Priority Goal">?</button>
+                            <button class="help-button" type="button" aria-label="Help for High Priority Goal">
+                                ?
+                            </button>
 
                             <span class="help-tooltip" role="tooltip">
                                 <strong>High Priority Goals</strong> keep pulling until the Item Target is met.
@@ -613,36 +636,24 @@
                                 <br><br>
                                 <strong>5✦ Weapons:</strong> Track how many copies of the secondary weapon you
                                 obtain while pulling for your chosen weapon.
+
                                 <br><br>
                                 <strong>4✦ Weapons:</strong> See how many copies you would obtain
                                 while pulling for a 5✦ target.
-
-
                             </span>
                         </span>
 
-                        <input id="goals-form-weapon-item-high-priority" name="item-high-priority" type="checkbox"
+                        <input id="edit-goal-weapon-item-high-priority" name="item-high-priority" type="checkbox"
                             checked>
                     </label>
-
                 </div>
+            </fieldset>
             </fieldset>
             <div class="success-container" id="goal-form-success-container" hidden></div>
             <div class="error-container" id="goal-form-error-container" hidden></div>
             <div class="form-buttons">
-                <button class="api-required" id="create-goal" type="button">Create Goal</button>
-                <button id="delete-all-goals" type="button">Delete All Goals</button>
-                <button class="api-required" id="create-banner-with-goal" type="button">Create Banner with
-                    Goal</button>
-            </div>
-
-            <div class="no-goals-container" hidden>
-                <p> Goals determine what you wish to get, and from where. Make one to start.</p>
-            </div>
-            <div id="goalsContainer" hidden>
-                <h3> Current Goals </h3>
-                <div class="goals-list">
-                </div>
+                <button class="api-required" id="save-edited-goal" type="button">Save Goal Changes</button>
+                <button id="cancel-editing-goal" type="button">Cancel</button>
             </div>
         </form>
     </dialog>
