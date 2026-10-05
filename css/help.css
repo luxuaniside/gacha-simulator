@@ -1,0 +1,78 @@
+@import "base.css";
+/* =========================
+   Help
+   ========================= */
+
+.help {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.help-button {
+    width: 18px;
+    height: 18px;
+
+    padding: 0;
+    border: 1px solid var(--border-lilac);
+    border-radius: 50%;
+
+    background: white;
+    color: var(--mid-lilac);
+
+    font-family: var(--font-main-text);
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+
+    cursor: help;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.help-button:hover,
+.help-button:focus-visible {
+    background: var(--light-lilac);
+}
+
+.help-tooltip {
+    position: absolute;
+    z-index: 100;
+
+    left: 50%;
+    bottom: calc(100% + 8px);
+    transform: translateX(-50%);
+
+    width: 220px;
+    padding: 9px 11px;
+
+    box-sizing: border-box;
+
+    background: white;
+    border: 1px solid var(--border-lilac);
+    border-radius: 8px;
+
+    color: var(--muted-black);
+    font-family: var(--font-main-text);
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 1.4;
+
+    box-shadow: 0 3px 10px rgb(0 0 0 / 8%);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.15s ease,
+        visibility 0.15s ease;
+}
+
+.help:hover .help-tooltip,
+.help-button:focus-visible + .help-tooltip {
+    opacity: 1;
+    visibility: visible;
+}

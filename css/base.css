@@ -1,0 +1,415 @@
+
+:root {
+    --muted-black: #2b2b2b;
+    --dark-lilac: #4b4879;
+    --mid-lilac: #6c689f;
+    --soft-lilac: #a39dd1;
+    --pale-lilac: #e6e2f5;
+    --blush-white: #f7f6fb;
+    --border-lilac: #d2cee6;
+    --accent-rose: #a85c85;
+    --muted-rose: #9c2f4b;
+    --pale-rose: #f6e2e9;
+    --error-border: #e0b4b4;
+    --error-background: #fff1f1;
+    --error-text: #9b3333;
+    --success-border: #afd3b4;
+    --success-background: #effaf0;
+    --success-text: #2f7040;
+    --sage: #47734f;
+    --pale-sage: #e4f0e6;
+
+    --font-headers: "Gabriela", arial;
+    --font-main-text: "IBM Plex Serif", sans-serif;
+}
+
+
+/* Global */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: clip;
+}
+
+body {
+    margin: 0;
+}
+
+
+/* Forms */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    width: 90%;
+
+    padding: 10px;
+    border-radius: 10px;
+    background: #f8f8fb;
+    border: 1px solid #dddde8;
+    color: var(--muted-black);
+    font-family: var(--font-main-text);
+
+    margin: 20px auto;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 12px;
+}
+
+.form label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.form input[type="number"], input[type="text"], select {
+    display: grid;
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: white;
+    font-size: 14px;
+    margin-top: 5px;
+    font-family: var(--font-main-text);
+}
+
+
+/* Headings */
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-headers);
+    color: var(--dark-lilac);
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+
+/* Subpage Tabs */
+
+.subpage-nav,
+.pity-subpage-nav {
+    display: flex;
+    gap: 4px;
+
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+
+    border-bottom: 1px solid #dddde8;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    scrollbar-width: none;
+}
+
+.subpage-nav::-webkit-scrollbar,
+.pity-subpage-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.subpage-tab,
+.pity-subpage-tab {
+    flex: 0 0 auto;
+
+    padding: 12px 14px 10px;
+
+    border: 0;
+    border-bottom: 2px solid transparent;
+
+    background: transparent;
+    color: var(--mid-lilac);
+
+    font-family: var(--font-headers);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.subpage-tab:hover,
+.pity-subpage-tab:hover {
+    color: var(--muted-black);
+}
+
+.subpage-tab.is-active,
+.pity-subpage-tab.is-active {
+    border-bottom-color: var(--soft-lilac);
+    color: var(--dark-lilac);
+}
+
+.subpage-tab:focus,
+.pity-subpage-tab:focus {
+    outline: none;
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 0 0 2px var(--pale-rose);
+}
+
+
+/* Main Content */
+.subpage-container,
+.pity-subpage-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.subpage-container {
+    display: grid;
+}
+
+.subpage {
+    grid-area: 1 / 1;
+
+    opacity: 0;
+    transform: translateY(8px);
+    pointer-events: none;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.subpage.is-active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+
+/* =========================
+   Pity Subpages
+   ========================= */
+
+.pity-subpage-container {
+    display: grid;
+    align-items: start;
+}
+
+.pity-subpage {
+    grid-area: 1 / 1;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+.pity-subpage.is-active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+
+/* Desktop */
+
+@media (min-width: 768px) {
+
+    .form {
+        padding: 16px;
+        gap: 10px;
+    }
+
+    .form label {
+        font-size: 16px;
+    }
+
+    .form input[type="number"], input[type="text"], select {
+        padding: 10px 12px;
+        font-size: 16px;
+    }
+
+    .subpage-tab,
+    .pity-subpage-tab {
+        padding: 14px 16px 12px;
+        font-size: 16px;
+    }
+}
+
+
+/* Custom Checkbox */
+.checkbox-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 12px;
+    gap: 8px;
+    padding: 10px 12px;
+    margin: 12px 0;
+    
+    border: 1px solid var(--blush-white);
+    border-radius: 6px;
+    background: white;
+    color: var(--muted-black);
+}
+.checkbox-field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border: 1px solid #eeeef3;
+    border-radius: 6px;
+    background: white;
+    color: #333;
+}
+input[type="checkbox"] {
+    display: flex;
+    align-items: center;
+    appearance: none;
+    order: 1;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    border: 1px solid var(--soft-lilac);
+    border-radius: 7px;
+    background: #ffffff;
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+ 
+input[type="checkbox"]::before {
+    content: "✦";
+    font-size: 16px;
+    line-height: 1;
+    color: #ffffff;
+    transform: scale(0);
+    transition: transform 0.12s ease;
+}
+ 
+input[type="checkbox"]:checked {
+    background: var(--dark-lilac);
+    border-color: var(--dark-lilac);
+}
+ 
+input[type="checkbox"]:checked::before {
+    transform: scale(1) translateY(0.5px) translateX(0px)
+}
+
+/* Errors or Success */
+.error-container, .success-container {
+    border-style: solid;
+    border-radius: 14px;
+    max-width: 100%;
+    padding: 10px 12px;
+
+    border: 1px solid;
+
+    border-radius: 6px;
+
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    
+}
+
+.error-container {
+    border-color: var(--error-border);
+    color: var(--error-text);
+    background-color: var(--error-background);
+}
+
+.success-container {
+    border-color: var(--success-border);
+    color: var(--success-text);
+    background-color: var(--success-background);
+}
+
+/* Fieldsets */
+fieldset {
+    padding: 20px;
+    margin: 0;
+    border: 1px solid #dddde8;
+    background-color: var();
+    border-radius: 10px;
+}
+
+.goals-item-fieldset,
+.banners-item-fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.goals-item-fieldset legend,
+.banners-item-fieldset legend {
+    padding: 0;
+    margin-bottom: 6px;
+    display: none;
+}
+
+/* Buttons */
+.form-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 12px;
+    width: 100%;
+}
+
+.form-buttons button {
+    flex: 1 1 200px;
+    padding: 8px 12px;
+    
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    background: white;
+    color: #333;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+}
+.form-buttons button:hover {
+    background: var(--blush-white);
+    border-color: var(--dark-lilac)
+}
+
+.form-buttons button:focus {
+    outline: none;
+    border-color: var(--soft-lilac);
+}
+
+/* Select Input */
+input[type="select"],
+.searchable-select-input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 9px 12px;
+
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+
+    background-color: var(--input-background);
+    color: var(--input-text);
+
+    font: inherit;
+    font-size: 14px;
+
+    outline: none;
+}
+
+.select:focus,
+.searchable-select-input:focus {
+    border-color: var(--input-focus-border);
+}

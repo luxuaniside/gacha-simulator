@@ -1,0 +1,421 @@
+@import "base.css";
+
+.no-banners-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.no-banners-container[hidden]{
+    display: none;
+}
+
+.no-banners-container p {
+    font-family: var(--font-headers);
+    color: var(--mid-lilac);
+    width: 100%;
+    margin: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* =========================
+   Individual Goal
+   ========================= */
+
+.goal-display {
+    background: white;
+    border: 1px solid var(--border-lilac);
+    border-radius: 10px;
+    box-sizing: border-box;
+    color: var(--muted-black);
+    font-family: var(--font-main-text);
+    margin-top: 10px;
+}
+
+
+/* =========================
+   Goal Summary
+   ========================= */
+
+.goal-summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px;
+
+    cursor: pointer;
+    list-style: none;
+}
+
+.goal-summary::-webkit-details-marker {
+    display: none;
+}
+
+.goal-summary::after {
+    margin-left: auto;
+
+    content: "+";
+
+    color: var(--mid-lilac);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.goal-display[open] .goal-summary::after {
+    content: "-";
+}
+
+
+/* =========================
+   Goal Heading
+   ========================= */
+
+.goal-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.goal-info-open-hint {
+    color: var(--mid-lilac);
+    font-size: 12px;
+    font-weight: 500;
+}
+
+
+/* =========================
+   Enable / Disable Goal
+   ========================= */
+
+.goal-summary .toggle-goal-button {
+    flex: 0 0 26px;
+
+    width: 26px;
+    height: 26px;
+    padding: 0;
+
+    border: 1px solid var(--success-border);
+    border-radius: 50%;
+
+    background: var(--success-background);
+    color: var(--success-text);
+
+    font-family: var(--font-main-text);
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease;
+}
+
+.goal-summary .toggle-goal-button:hover {
+    border-color: var(--success-border);
+    background: var(--pale-sage);
+}
+
+.goal-summary .toggle-goal-button:focus {
+    outline: none;
+    border-color: var(--soft-lilac);
+}
+
+
+/* Disabled Goal */
+
+.goal-display.goal-disabled {
+    opacity: 0.58;
+}
+
+.goal-display.goal-disabled .goal-info-goal-name {
+    text-decoration: line-through;
+}
+
+.goal-display.goal-disabled .toggle-goal-button {
+    border-color: var(--border-lilac);
+    background: var(--blush-white);
+    color: var(--mid-lilac);
+}
+
+.goal-display.goal-disabled .toggle-goal-button:hover {
+    border-color: var(--soft-lilac);
+    background: var(--pale-lilac);
+}
+
+
+/* =========================
+   Goal Name
+   ========================= */
+
+.goal-display .goal-info-goal-name {
+    margin: 0 0 2px 0;
+
+    font-family: var(--font-headers);
+    font-size: 18px;
+    font-weight: 700;
+
+    color: var(--dark-lilac);
+}
+
+
+/* =========================
+   Goal Content
+   ========================= */
+
+.goal-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    padding: 0 12px 12px;
+}
+
+
+/* =========================
+   Goal Information
+   ========================= */
+
+.goal-info {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.goal-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.goal-info-item[hidden] {
+    display: none;
+}
+
+
+/* High Priority Information */
+
+.goal-info-priority {
+    grid-column: 1 / -1;
+}
+
+.goal-info-priority[hidden] {
+    display: none;
+}
+
+.goal-info-priority p {
+    margin: 0;
+}
+
+
+/* =========================
+   Labels
+   ========================= */
+
+.goal-display label {
+    color: var(--mid-lilac);
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   Values
+   ========================= */
+
+.goal-display p {
+    margin: 0;
+    padding: 8px 10px;
+
+    background: var(--blush-white);
+    border: 1px solid var(--border-lilac);
+    border-radius: 6px;
+
+    color: var(--muted-black);
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   Selected Banner
+   ========================= */
+
+.goal-info-goal-banner {
+    width: 100%;
+}
+
+
+/* =========================
+   Banner Details
+   ========================= */
+
+.goal-banner-details {
+    border: 1px solid var(--border-lilac);
+    border-radius: 6px;
+
+    background: var(--blush-white);
+}
+
+.goal-banner-details > summary {
+    padding: 10px 12px;
+
+    color: var(--mid-lilac);
+    cursor: pointer;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    list-style: none;
+}
+
+.goal-banner-details > summary::-webkit-details-marker {
+    display: none;
+}
+
+.goal-banner-details > summary::before {
+    content: "+";
+
+    display: inline-block;
+    width: 16px;
+
+    color: var(--soft-lilac);
+}
+
+.goal-banner-details[open] > summary::before {
+    content: "-";
+}
+
+
+/* =========================
+   Character Banner Info
+   ========================= */
+
+.goal-character-banner-info {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+
+    padding: 0 12px 12px;
+}
+
+.goal-character-banner-info[hidden] {
+    display: none;
+}
+/* =========================
+   Weapon Banner Info
+   ========================= */
+
+.goal-weapon-banner-info {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+
+    padding: 0 12px 12px;
+}
+
+.goal-weapon-banner-info[hidden] {
+    display: none;
+}
+
+
+/* =========================
+   Banner Values
+   ========================= */
+
+.goalBannerType,
+.goalBannerPrimary,
+.goalBannerSecondary,
+.goalBannerFourItems {
+    width: 100%;
+}
+
+
+/* =========================
+   Move Buttons
+   ========================= */
+
+.goal-reorder-buttons {
+    display: flex;
+    gap: 8px;
+
+    margin-top: 4px;
+}
+
+.goal-reorder-buttons button {
+    flex: 1;
+}
+
+
+/* =========================
+   Bottom Actions
+   ========================= */
+
+.goal-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.goal-actions button {
+    flex: 1;
+}
+
+
+/* =========================
+   All Goal Buttons
+   ========================= */
+
+.goal-display button {
+    padding: 8px 12px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    background: white;
+    color: var(--muted-black);
+
+    font-family: var(--font-main-text);
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease;
+}
+
+.goal-display button:hover {
+    background: var(--blush-white);
+    border-color: var(--dark-lilac);
+}
+
+.goal-display button:focus {
+    outline: none;
+    border-color: var(--soft-lilac);
+}
+
+.goal-info-priority p {
+    background-color: unset;
+    border: unset;
+}
+
+/* =========================
+   Mobile
+   ========================= */
+
+@media (max-width: 560px) {
+    .goal-info,
+    .goal-character-banner-info,
+    .goal-weapon-banner-info {
+        grid-template-columns: 1fr;
+    }
+}

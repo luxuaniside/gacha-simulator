@@ -1,0 +1,23 @@
+# Dependency and build output (for optional frontend tooling)
+node_modules/
+dist/
+build/
+.dist/
+coverage/
+.cache/
+
+# Local environment variables
+.env
+.env.*
+!.env.example
+
+# Logs and debug output
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Editor and operating system files
+.idea/
+.DS_Store
+Thumbs.db
