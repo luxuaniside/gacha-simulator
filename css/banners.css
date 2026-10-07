@@ -1,5 +1,48 @@
 @import "base.css";
 
+.banner-form-settings {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 12px;
+}
+
+.banner-character-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.banner-weapon-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 12px;
+}
+
+.banner-four-weapon-field {
+    grid-column: 1 / -1;
+}
+
+.banner-max-four-items-hint {
+    margin: 4px 0 0;
+    color: var(--mid-lilac);
+    font-size: 12px;
+}
+
+.banners-item-fieldset .form-field > label {
+    display: block;
+}
+
+.banners-item-fieldset .multi-select {
+    margin-top: 5px;
+}
+
+@media (max-width: 640px) {
+    .banner-form-settings,
+    .banner-weapon-fields {
+        grid-template-columns: 1fr;
+    }
+}
+
 .no-banners-container {
     display: flex;
     justify-content: center;

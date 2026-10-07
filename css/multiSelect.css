@@ -1,0 +1,238 @@
+.multi-select {
+    position: relative;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.multi-select-input {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    width: 100%;
+    height: 38px;
+    min-width: 0;
+    box-sizing: border-box;
+    padding: 4px 8px;
+
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: white;
+
+    cursor: text;
+}
+
+.multi-select-input:focus-within {
+    border-color: var(--soft-lilac);
+    box-shadow: 0 0 0 2px var(--pale-lilac);
+}
+
+.selected-chips {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    flex: 0 1 auto;
+    max-width: none;
+    min-width: 0;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    white-space: nowrap;
+}
+
+.selected-chips::-webkit-scrollbar {
+    display: none;
+}
+
+.selected-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+
+    appearance: none;
+    flex: 0 0 auto;
+    max-width: 180px;
+    box-sizing: border-box;
+
+    padding: 3px 8px;
+    border: 1px solid var(--border-lilac);
+    border-radius: 6px;
+    background: var(--pale-lilac);
+    color: var(--dark-lilac);
+
+    font: inherit;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.selected-chip:hover {
+    border-color: var(--soft-lilac);
+    background: var(--blush-white);
+}
+
+.selected-chip span:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.multi-select-input > .clear-selection {
+    display: inline-flex;
+    flex: 0 0 24px;
+    align-items: center;
+    justify-content: center;
+
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    color: var(--mid-lilac);
+
+    font: inherit;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.clear-selection span {
+    transform: translateY(-1px);
+}
+
+.multi-select-input > .clear-selection:hover {
+    background: var(--pale-lilac);
+    color: var(--muted-rose);
+}
+
+.multi-select-input > .clear-selection[hidden] {
+    display: none;
+}
+
+.multi-select-input > .multi-select-search {
+    display: block;
+    flex: 1 1 0%;
+    min-width: 40px;
+    width: 0;
+    max-width: none;
+    height: auto;
+
+    border: none;
+    border-radius: 0;
+    outline: none;
+    background: transparent;
+    box-shadow: none;
+
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main-text);
+    font-size: 14px;
+    appearance: none;
+}
+
+.multi-select-dropdown {
+    position: absolute;
+
+    top: 100%;
+    left: 0;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+
+    margin-top: 4px;
+
+    max-height: min(200px, 40vh);
+    overflow-y: auto;
+
+    display: none;
+    z-index: 100;
+}
+
+.select-all-options {
+    position: sticky;
+    top: 0;
+
+    width: 100%;
+    padding: 8px;
+    border: 0;
+    border-bottom: 1px solid var(--border-lilac);
+    background: var(--blush-white);
+    color: var(--dark-lilac);
+
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.select-all-options:hover {
+    background: var(--pale-lilac);
+}
+
+.multi-select-options {
+    min-width: 0;
+}
+
+.multi-select-option {
+    min-height: 40px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.multi-select-option:hover {
+    background: #eee;
+}
+
+.multi-select-empty {
+    padding: 8px;
+    color: var(--mid-lilac);
+}
+
+@media (max-width: 560px) {
+    .multi-select-input {
+        gap: 3px;
+        padding: 4px 6px;
+    }
+
+    .selected-chips {
+        gap: 4px;
+    }
+
+    .selected-chip {
+        max-width: 140px;
+        padding: 3px 6px;
+        font-size: 13px;
+    }
+
+    .multi-select-input > .multi-select-search {
+        min-width: 32px;
+        font-size: 14px;
+    }
+
+    .multi-select-input > .clear-selection {
+        flex-basis: 22px;
+        width: 22px;
+        height: 22px;
+    }
+
+    .select-all-options,
+    .multi-select-option {
+        min-height: 44px;
+        padding: 10px;
+    }
+}
+
+@media (min-width: 768px) {
+    .multi-select-input {
+        height: 42px;
+    }
+
+    .multi-select-input > .multi-select-search {
+        font-size: 16px;
+    }
+}

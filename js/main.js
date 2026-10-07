@@ -7,4 +7,6 @@ initalizeWishingResources();
 initializePityResources();
 
 import { initializeGoalsPage } from "./goals/goalPage.js";
+import { initializeBannersPage } from "./banners/bannerPage.js";
 initializeGoalsPage()
+initializeBannersPage()

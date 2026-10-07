@@ -12,6 +12,10 @@
     <link rel="stylesheet" href="css/goals.css">
     <link rel="stylesheet" href="css/help.css">
     <link rel="stylesheet" href="css/modals.css">
+    <link rel="stylesheet" href="css/banners.css">
+    <link rel="stylesheet" href="css/multiSelect.css">
+
+
 </head>
 
 <body>
@@ -386,57 +390,59 @@
         <section class="subpage" id="banners-subpage">
             <form class="form" id="banners-form">
                 <h2>Banners</h2>
-                <div class="form-field">
-                    <label for="banners-form-item-type">Item Type</label>
-                    <select id="banners-form-item-type" name="banner-item-type">
-                        <option value="character">Character</option>
-                        <option value="weapon">Weapon</option>
-                    </select>
-                </div>
-                <div class="form-field">
-                    <label for="banners-form-banner-name">Banner Name</label>
-                    <input id="banners-form-banner-name" type="text" placeholder="Optional Banner Name"
-                        name="banner-name">
+                <div class="banner-form-settings">
+                    <div class="form-field">
+                        <label for="banners-form-item-type">Item Type</label>
+                        <select id="banners-form-item-type" name="banner-item-type">
+                            <option value="character">Character</option>
+                            <option value="weapon">Weapon</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <label for="banners-form-banner-name">Banner Name</label>
+                        <input id="banners-form-banner-name" type="text" placeholder="Optional Banner Name"
+                            name="banner-name">
+                    </div>
                 </div>
 
                 <fieldset id="banners-form-character-fieldset" class="banners-item-fieldset">
                     <legend>Character Banner Input</legend>
-                    <div class="form-field">
-                        <label for="banners-form-character-primary-item">5✦ Character</label>
-                        <select id="banners-form-character-primary-item" name="primary-item">
-                            <option>No items found</option>
-                        </select>
-                    </div>
+                    <div class="banner-character-fields">
+                        <div class="form-field">
+                            <label for="banners-form-character-primary-item">5✦ Character</label>
+                            <select id="banners-form-character-primary-item" name="primary-item">
+                                <option>No items found</option>
+                            </select>
+                        </div>
 
-                    <div class="form-field">
-                        <label for="banners-form-character-four-items">4✦ Characters </label>
-                        <select id="banners-form-character-four-items" name="four-items">
-                            <option>No items found</option>
-                        </select>
-                        <p class="banner-max-four-items-hint">Maximum of 3 4-star characters selected.</p>
+                        <div class="form-field">
+                            <label for="four-character-select">4✦ Characters</label>
+                            <div class="multi-select" id="four-character-select"></div>
+                            <p class="banner-max-four-items-hint">Select three 4-star characters.</p>
+                        </div>
                     </div>
                 </fieldset>
                 <fieldset id="banners-form-weapon-fieldset" class="banners-item-fieldset" hidden>
                     <legend>Weapon Banner Input</legend>
-                    <div class="form-field">
-                        <label for="banners-form-weapon-primary-item">Epitomized 5✦ Weapon</label>
-                        <select id="banners-form-weapon-primary-item" name="primary-item">
-                            <option>No items found</option>
-                        </select>
-                    </div>
-                    <div class="form-field">
-                        <label for="banners-form-weapon-secondary-item">Secondary 5✦ Weapon</label>
-                        <select id="banners-form-weapon-secondary-item" name="secondary-item">
-                            <option>No items found</option>
-                        </select>
-                    </div>
+                    <div class="banner-weapon-fields">
+                        <div class="form-field">
+                            <label for="banners-form-weapon-primary-item">Epitomized 5✦ Weapon</label>
+                            <select id="banners-form-weapon-primary-item" name="primary-item">
+                                <option>No items found</option>
+                            </select>
+                        </div>
+                        <div class="form-field">
+                            <label for="banners-form-weapon-secondary-item">Secondary 5✦ Weapon</label>
+                            <select id="banners-form-weapon-secondary-item" name="secondary-item">
+                                <option>No items found</option>
+                            </select>
+                        </div>
 
-                    <div class="form-field">
-                        <label for="banners-form-weapon-four-items">4✦ Weapons </label>
-                        <select id="banners-form-weapon-four-items" name="four-items">
-                            <option>No items found</option>
-                        </select>
-                        <p class="banner-max-four-items-hint">Maximum of 5 4-star weapons selected.</p>
+                        <div class="form-field banner-four-weapon-field">
+                            <label for="four-weapon-select">4✦ Weapons</label>
+                            <div class="multi-select" id="four-weapon-select"></div>
+                            <p class="banner-max-four-items-hint">Select five 4-star weapons.</p>
+                        </div>
                     </div>
                 </fieldset>
 
