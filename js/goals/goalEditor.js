@@ -6,14 +6,8 @@ import {
 } from "../inventory.js";
 import { editGoal } from "./goalService.js";
 
-const defaultBanner = {
-    banner_name: "Example Banner",
-    banner_five_item_primary: "Anastasya",
-    banner_five_item_secondary: null,   
-    banner_four_items: ["a"],
-    item_type: "weapon",
-};
 
+import { getBanner, getExistingBanners } from "../storage/banners.js";
 let editingGoalUuid;
 
 export function initializeGoalEditor() {
@@ -63,6 +57,15 @@ export function initializeGoalEditor() {
         "change",
         updateEditGoalItemForm
     );
+
+    document.getElementById("edit-goal-character-item-name").addEventListener(
+        "change",
+        event => populateEditGoalBanner(event.currentTarget.value)
+    );
+    document.getElementById("edit-goal-weapon-item-name").addEventListener(
+        "change",
+        event => populateEditGoalBanner(event.currentTarget.value)
+    );
 }
 
 export function populateEditGoalForm(goal) {
@@ -104,6 +107,10 @@ export function populateEditGoalForm(goal) {
     itemSelect.value = goal.item_name;
     targetCount.value = goal.item_target_count;
     highPriority.checked = goal.item_high_priority;
+    populateEditGoalBanner(
+        goal.item_name,
+        goal.goal_banner?.banner_uuid ?? ""
+    );
 }
 
 
@@ -115,6 +122,7 @@ function updateEditGoalItemForm() {
     switchEditGoalItemTypeFieldset(itemType);
     renderEditHighPriorityOption(itemRarity);
     populateEditGoalItem(itemType, itemRarity);
+    populateEditGoalBanner(getCurrentEditGoalItemName());
 }
 
 
@@ -187,6 +195,51 @@ function populateEditGoalItem(itemType, itemRarity) {
     });
 }
 
+function getCurrentEditGoalItemName() {
+    const itemType = document.getElementById("edit-goal-item-type").value;
+    const itemSelect = document.getElementById(
+        itemType === "character"
+            ? "edit-goal-character-item-name"
+            : "edit-goal-weapon-item-name"
+    );
+
+    return itemSelect.value;
+}
+
+function populateEditGoalBanner(itemName, preferredBannerUuid = "") {
+    const bannerSelect = document.getElementById("edit-goal-banner");
+    const matchingBanners = getExistingBanners().filter(banner =>
+        banner.banner_five_item_primary === itemName ||
+        banner.banner_five_item_secondary === itemName ||
+        (banner.banner_four_items ?? []).includes(itemName)
+    );
+
+    bannerSelect.innerHTML = "";
+
+    if (matchingBanners.length === 0) {
+        const option = document.createElement("option");
+        option.value = "";
+        option.textContent = "No banner found.";
+        bannerSelect.appendChild(option);
+        bannerSelect.disabled = true;
+        return;
+    }
+
+    matchingBanners.forEach(banner => {
+        const option = document.createElement("option");
+        option.value = banner.banner_uuid;
+        option.textContent = banner.banner_name;
+        bannerSelect.appendChild(option);
+    });
+
+    bannerSelect.disabled = false;
+    bannerSelect.value = matchingBanners.some(
+        banner => banner.banner_uuid === preferredBannerUuid
+    )
+        ? preferredBannerUuid
+        : matchingBanners[0].banner_uuid;
+}
+
 
 function limitEditItemTargetCount() {
     const form = document.querySelector("#edit-goals-form");
@@ -216,11 +269,20 @@ export function getEditGoalFormValues() {
         "edit-goal-item-rarity"
     ).value;
 
-    const goalBanner = defaultBanner;
+    var goalBanner = document.getElementById(
+        "edit-goal-banner"
+    ).value;
 
-    let itemTargetCount;
-    let itemName;
-    let itemHighPriority;
+    // Convert the string "null" or empty string to an actual JavaScript null
+    var goalBanner = (goalBanner === "null" || goalBanner === "")
+        ? null
+        : goalBanner;
+
+    goalBanner = getBanner(goalBanner);
+
+    /* Initialize */
+    var itemTargetCount = null;
+    var itemName = null;
 
     if (itemType === "character") {
         itemName = document.getElementById(
@@ -231,7 +293,7 @@ export function getEditGoalFormValues() {
             "edit-goal-character-target-count"
         ).value;
 
-        itemHighPriority = document.getElementById(
+        var itemHighPriority = document.getElementById(
             "edit-goal-character-item-high-priority"
         ).checked;
 
@@ -244,7 +306,7 @@ export function getEditGoalFormValues() {
             "edit-goal-weapon-target-count"
         ).value;
 
-        itemHighPriority = document.getElementById(
+        var itemHighPriority = document.getElementById(
             "edit-goal-weapon-item-high-priority"
         ).checked;
     }
@@ -259,14 +321,4 @@ export function getEditGoalFormValues() {
         item_target_count: itemTargetCount,
         item_high_priority: itemHighPriority,
     };
-}
-
-
-// Open edit modal
-export function openEditDialog(goal){
-    const editDialog = document.getElementById("edit-goal-dialog")
-    
-    populateEditGoalForm(goal);
-    editDialog.showModal()
-
 }

@@ -28,7 +28,7 @@
     font-size: 12px;
 }
 
-.banners-item-fieldset .form-field > label {
+.banners-item-fieldset .form-field>label {
     display: block;
 }
 
@@ -37,9 +37,29 @@
 }
 
 @media (max-width: 640px) {
+
     .banner-form-settings,
     .banner-weapon-fields {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    #banners-form-weapon-fieldset,
+    .banner-four-weapon-field {
+        min-width: 0;
+    }
+
+    #four-weapon-select .multi-select-input {
+        height: auto;
+        min-height: 38px;
+        flex-wrap: wrap;
+    }
+
+    #four-weapon-select .selected-chips {
+        flex: 1 1 100%;
+        flex-wrap: wrap;
+        max-width: 100%;
+        overflow: visible;
+        white-space: normal;
     }
 }
 
@@ -49,7 +69,7 @@
     width: 100%;
 }
 
-.no-banners-container[hidden]{
+.no-banners-container[hidden] {
     display: none;
 }
 
@@ -65,10 +85,10 @@
 }
 
 /* =========================
-   Individual Goal
+   Individual banner
    ========================= */
 
-.goal-display {
+.banner-display {
     background: white;
     border: 1px solid var(--border-lilac);
     border-radius: 10px;
@@ -80,10 +100,10 @@
 
 
 /* =========================
-   Goal Summary
+   banner Summary
    ========================= */
 
-.goal-summary {
+.banner-summary {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -94,11 +114,11 @@
     list-style: none;
 }
 
-.goal-summary::-webkit-details-marker {
+.banner-summary::-webkit-details-marker {
     display: none;
 }
 
-.goal-summary::after {
+.banner-summary::after {
     margin-left: auto;
 
     content: "+";
@@ -108,22 +128,25 @@
     font-weight: 400;
 }
 
-.goal-display[open] .goal-summary::after {
+.banner-display[open] .banner-summary::after {
     content: "-";
 }
 
 
 /* =========================
-   Goal Heading
+   banner Heading
    ========================= */
 
-.goal-heading {
+.banner-heading {
     display: flex;
     align-items: center;
     gap: 10px;
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
-.goal-info-open-hint {
+.banner-info-open-hint {
+    flex: 0 0 auto;
     color: var(--mid-lilac);
     font-size: 12px;
     font-weight: 500;
@@ -131,10 +154,10 @@
 
 
 /* =========================
-   Enable / Disable Goal
+   Enable / Disable banner
    ========================= */
 
-.goal-summary .toggle-goal-button {
+.banner-summary .toggle-banner-button {
     flex: 0 0 26px;
 
     width: 26px;
@@ -160,44 +183,44 @@
         color 0.15s ease;
 }
 
-.goal-summary .toggle-goal-button:hover {
+.banner-summary .toggle-banner-button:hover {
     border-color: var(--success-border);
     background: var(--pale-sage);
 }
 
-.goal-summary .toggle-goal-button:focus {
+.banner-summary .toggle-banner-button:focus {
     outline: none;
     border-color: var(--soft-lilac);
 }
 
 
-/* Disabled Goal */
+/* Disabled banner */
 
-.goal-display.goal-disabled {
+.banner-display.banner-disabled {
     opacity: 0.58;
 }
 
-.goal-display.goal-disabled .goal-info-goal-name {
+.banner-display.banner-disabled .banner-info-banner-name {
     text-decoration: line-through;
 }
 
-.goal-display.goal-disabled .toggle-goal-button {
+.banner-display.banner-disabled .toggle-banner-button {
     border-color: var(--border-lilac);
     background: var(--blush-white);
     color: var(--mid-lilac);
 }
 
-.goal-display.goal-disabled .toggle-goal-button:hover {
+.banner-display.banner-disabled .toggle-banner-button:hover {
     border-color: var(--soft-lilac);
     background: var(--pale-lilac);
 }
 
 
 /* =========================
-   Goal Name
+   banner Name
    ========================= */
 
-.goal-display .goal-info-goal-name {
+.banner-display .banner-info-banner-name {
     margin: 0 0 2px 0;
 
     font-family: var(--font-headers);
@@ -205,14 +228,19 @@
     font-weight: 700;
 
     color: var(--dark-lilac);
+    flex: 0 1 auto;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 
 /* =========================
-   Goal Content
+   banner Content
    ========================= */
 
-.goal-content {
+.banner-content {
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -222,37 +250,31 @@
 
 
 /* =========================
-   Goal Information
+   banner Information
    ========================= */
 
-.goal-info {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 8px;
-}
-
-.goal-info-item {
+.banner-info-item {
     display: flex;
     flex-direction: column;
     gap: 3px;
 }
 
-.goal-info-item[hidden] {
+.banner-info-item[hidden] {
     display: none;
 }
 
 
 /* High Priority Information */
 
-.goal-info-priority {
+.banner-info-priority {
     grid-column: 1 / -1;
 }
 
-.goal-info-priority[hidden] {
+.banner-info-priority[hidden] {
     display: none;
 }
 
-.goal-info-priority p {
+.banner-info-priority p {
     margin: 0;
 }
 
@@ -261,7 +283,7 @@
    Labels
    ========================= */
 
-.goal-display label {
+.banner-display label {
     color: var(--mid-lilac);
 
     font-size: 12px;
@@ -273,7 +295,7 @@
    Values
    ========================= */
 
-.goal-display p {
+.banner-display p {
     margin: 0;
     padding: 8px 10px;
 
@@ -288,83 +310,34 @@
 
 
 /* =========================
-   Selected Banner
-   ========================= */
-
-.goal-info-goal-banner {
-    width: 100%;
-}
-
-
-/* =========================
-   Banner Details
-   ========================= */
-
-.goal-banner-details {
-    border: 1px solid var(--border-lilac);
-    border-radius: 6px;
-
-    background: var(--blush-white);
-}
-
-.goal-banner-details > summary {
-    padding: 10px 12px;
-
-    color: var(--mid-lilac);
-    cursor: pointer;
-
-    font-size: 13px;
-    font-weight: 600;
-
-    list-style: none;
-}
-
-.goal-banner-details > summary::-webkit-details-marker {
-    display: none;
-}
-
-.goal-banner-details > summary::before {
-    content: "+";
-
-    display: inline-block;
-    width: 16px;
-
-    color: var(--soft-lilac);
-}
-
-.goal-banner-details[open] > summary::before {
-    content: "-";
-}
-
-
-/* =========================
    Character Banner Info
    ========================= */
 
-.goal-character-banner-info {
+.banner-character-banner-info {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
-
-    padding: 0 12px 12px;
 }
 
-.goal-character-banner-info[hidden] {
+.banner-character-banner-info[hidden] {
     display: none;
 }
+
 /* =========================
    Weapon Banner Info
    ========================= */
 
-.goal-weapon-banner-info {
+.banner-weapon-banner-info {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px;
-
-    padding: 0 12px 12px;
 }
 
-.goal-weapon-banner-info[hidden] {
+.banner-four-weapons-item {
+    grid-column: 1 / -1;
+}
+
+.banner-weapon-banner-info[hidden] {
     display: none;
 }
 
@@ -373,10 +346,10 @@
    Banner Values
    ========================= */
 
-.goalBannerType,
-.goalBannerPrimary,
-.goalBannerSecondary,
-.goalBannerFourItems {
+.bannerBannerType,
+.bannerBannerPrimary,
+.bannerBannerSecondary,
+.bannerBannerFourItems {
     width: 100%;
 }
 
@@ -385,14 +358,14 @@
    Move Buttons
    ========================= */
 
-.goal-reorder-buttons {
+.banner-reorder-buttons {
     display: flex;
     gap: 8px;
 
     margin-top: 4px;
 }
 
-.goal-reorder-buttons button {
+.banner-reorder-buttons button {
     flex: 1;
 }
 
@@ -401,21 +374,21 @@
    Bottom Actions
    ========================= */
 
-.goal-actions {
+.banner-actions {
     display: flex;
     gap: 8px;
 }
 
-.goal-actions button {
+.banner-actions button {
     flex: 1;
 }
 
 
 /* =========================
-   All Goal Buttons
+   All banner Buttons
    ========================= */
 
-.goal-display button {
+.banner-display button {
     padding: 8px 12px;
 
     border: 1px solid #ccc;
@@ -436,17 +409,17 @@
         color 0.15s ease;
 }
 
-.goal-display button:hover {
+.banner-display button:hover {
     background: var(--blush-white);
     border-color: var(--dark-lilac);
 }
 
-.goal-display button:focus {
+.banner-display button:focus {
     outline: none;
     border-color: var(--soft-lilac);
 }
 
-.goal-info-priority p {
+.banner-info-priority p {
     background-color: unset;
     border: unset;
 }
@@ -456,9 +429,9 @@
    ========================= */
 
 @media (max-width: 560px) {
-    .goal-info,
-    .goal-character-banner-info,
-    .goal-weapon-banner-info {
+
+    .banner-character-banner-info,
+    .banner-weapon-banner-info {
         grid-template-columns: 1fr;
     }
 }

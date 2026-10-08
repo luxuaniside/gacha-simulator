@@ -15,6 +15,7 @@
 }
 
 .modal h2 {
+    font-size: 1.5rem;
     margin: 0 0 0.75rem;
 }
 
@@ -29,29 +30,134 @@
     gap: 0.75rem;
 }
 
-#edit-goal-dialog {
-    width: min(92vw, 54rem);
-    max-height: 90dvh;
+#edit-goal-dialog,
+#edit-banner-dialog,
+#quick-banner-dialog,
+.edit-banner-dialog {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(92vw, 30rem);
+    max-width: calc(100% - 1rem);
+    max-height: calc(100dvh - 1rem);
+    overflow-x: hidden;
     overflow-y: auto;
-    border: 0;
+    border: 1px solid #d2d0df;
+    border-radius: 18px;
+    background: #f5f4f9;
+    padding: 1.25rem 1.35rem 1rem;
+    box-shadow: 0 18px 45px rgb(30 30 40 / 18%);
 }
 
-#edit-goal-dialog #edit-goals-form {
+#edit-goal-dialog #edit-goals-form,
+#edit-banner-dialog #edit-banner-form,
+#quick-banner-dialog #quick-banner-form,
+#edit-goal-dialog .form,
+#edit-banner-dialog .form,
+#quick-banner-dialog .form,
+.edit-banner-dialog .edit-banners-form {
     width: 100%;
     margin: 0;
     padding: 0;
     border: 0;
     background: transparent;
+    box-shadow: none;
+}
+
+#edit-goal-dialog h2,
+#edit-banner-dialog h2,
+#quick-banner-dialog h2 {
+    font-size: 1.5rem;
+    margin: 0 0 1rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+#edit-goal-dialog .form-grid,
+#edit-banner-dialog .form-grid,
+#quick-banner-dialog .form-grid,
+#edit-banner-dialog .banner-form-settings,
+#edit-banner-dialog .banner-character-fields,
+#edit-banner-dialog .banner-weapon-fields,
+#quick-banner-dialog .banner-character-fields,
+#quick-banner-dialog .banner-weapon-fields {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.7rem;
+}
+
+#quick-banner-dialog .multi-select-input {
+    height: auto;
+    min-height: 38px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+#quick-banner-dialog .selected-chips {
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+    overflow: visible;
+    white-space: normal;
+}
+
+#edit-goal-dialog .form-field,
+#edit-banner-dialog .form-field,
+#quick-banner-dialog .form-field {
+    display: flex;
+    flex-direction: column;
+}
+
+#edit-goal-dialog .form-buttons,
+#edit-banner-dialog .form-buttons,
+#quick-banner-dialog .form-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin-top: 0.75rem;
+}
+
+#edit-goal-dialog .form-buttons button,
+#edit-banner-dialog .form-buttons button,
+#quick-banner-dialog .form-buttons button {
+    width: 100%;
+    flex: 1 1 auto;
+    min-height: 44px;
+    border: 1px solid #d5d5dd;
+    border-radius: 10px;
+    background: #f7f7fb;
+    color: var(--muted-black);
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 20%);
+}
+
+#edit-goal-dialog .form-buttons button:hover,
+#edit-banner-dialog .form-buttons button:hover,
+#quick-banner-dialog .form-buttons button:hover {
+    border-color: var(--soft-lilac);
+    background: #f0eef9;
 }
 
 @media (max-width: 560px) {
-    #edit-goal-dialog {
-        width: calc(100vw - 1rem);
+
+    #edit-goal-dialog,
+    #edit-banner-dialog,
+    #quick-banner-dialog,
+    .edit-banner-dialog {
+        width: min(30rem, calc(100% - 1rem));
         max-height: calc(100dvh - 1rem);
-        padding: 0.75rem;
+        padding: 0.9rem 0.9rem 0.75rem;
     }
 
-    #edit-goals-form .form-grid {
+    #edit-goals-form .form-grid,
+    #edit-banners-form .form-grid,
+    .edit-banners-form .form-grid,
+    #quick-banner-form .form-grid,
+    #edit-banner-dialog .banner-form-settings,
+    #edit-banner-dialog .banner-character-fields,
+    #edit-banner-dialog .banner-weapon-fields,
+    #quick-banner-dialog .banner-character-fields,
+    #quick-banner-dialog .banner-weapon-fields {
         grid-template-columns: minmax(0, 1fr);
     }
 }

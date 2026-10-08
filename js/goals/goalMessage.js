@@ -1,4 +1,4 @@
-export function handleGoalErrorMessage(error){
+export function handleGoalErrorMessage(error) {
     const errorContainer = document.getElementById("goal-form-error-container");
     const successContainer = document.getElementById("goal-form-success-container");
     successContainer.hidden = true;
@@ -6,7 +6,7 @@ export function handleGoalErrorMessage(error){
     errorContainer.textContent = error
 }
 
-export function handleGoalSuccessMessage(message){
+export function handleGoalSuccessMessage(message) {
     const errorContainer = document.getElementById("goal-form-error-container");
     const successContainer = document.getElementById("goal-form-success-container");
     successContainer.hidden = false;
@@ -14,9 +14,9 @@ export function handleGoalSuccessMessage(message){
     successContainer.textContent = message
 }
 
-export function clearErrorAndSuccessMessage(){
+export function clearErrorAndSuccessMessage() {
     const errorContainer = document.getElementById("goal-form-error-container");
     const successContainer = document.getElementById("goal-form-success-container");
     successContainer.hidden = true;
     errorContainer.hidden = true;
-}
+}   

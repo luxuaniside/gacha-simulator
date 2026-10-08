@@ -2,8 +2,8 @@ export class MultiSelect {
     constructor(container, items, options = {}) {
         this.container = container;
         this.items = items;
-        this.min = options.min ?? 0;
         this.max = options.max ?? Infinity;
+        this.lockedItems = new Set(options.lockedItems ?? []);
         this.selectedItems = (options.selectedItems ?? [])
             .filter(value => items.some(item => item.value === value))
             .slice(0, this.max);
@@ -95,7 +95,9 @@ export class MultiSelect {
         });
 
         this.clearButton.addEventListener("click", () => {
-            this.selectedItems = [];
+            this.selectedItems = this.selectedItems.filter(
+                value => this.lockedItems.has(value)
+            );
             this.searchInput.value = "";
             this.renderChips();
             this.searchInput.focus();
@@ -138,6 +140,10 @@ export class MultiSelect {
     }
 
     removeItem(value) {
+        if (this.lockedItems.has(value)) {
+            return;
+        }
+
         this.selectedItems = this.selectedItems.filter(
             item => item !== value
         );
@@ -169,6 +175,7 @@ export class MultiSelect {
         this.searchInput.placeholder =
             this.selectedItems.length > 0 ? "" : "Search...";
         this.clearButton.hidden = this.selectedItems.length === 0;
+        this.clearButton.title = "Clear selected items";
 
         this.selectedItems.forEach(value => {
             const item = this.items.find(
@@ -184,7 +191,10 @@ export class MultiSelect {
             chip.type = "button";
             chip.dataset.value = item.value;
             chip.setAttribute("aria-label", `Remove ${item.display}`);
-            chip.title = "Click to remove";
+            chip.disabled = this.lockedItems.has(value);
+            chip.title = chip.disabled
+                ? "This item is used by a goal and cannot be removed"
+                : "Click to remove";
 
             const label = document.createElement("span");
             label.textContent = item.display;
@@ -224,6 +234,24 @@ export class MultiSelect {
             option.textContent = item.display;
             this.optionsContainer.appendChild(option);
         });
+    }
+
+    setValues(values) {
+        this.selectedItems = values
+            .filter(value =>
+                this.items.some(item => item.value === value)
+            )
+            .slice(0, this.max);
+
+        this.searchInput.value = "";
+        this.renderChips();
+    }
+
+    setLockedValues(values) {
+        this.lockedItems = new Set(
+            values.filter(value => this.items.some(item => item.value === value))
+        );
+        this.renderChips();
     }
 
     getValues() {

@@ -5,13 +5,8 @@ import {
     LimitedFourWeaponList
 } from "../inventory.js";
 
-const defaultBanner = {
-    banner_name: "Example Banner",
-    banner_five_item_primary: "Anastasya",
-    banner_five_item_secondary: null,   
-    banner_four_items: ["a"],
-    item_type: "weapon",
-};
+import { getBanner, getExistingBanners } from "../storage/banners.js"
+
 
 export function initializeGoalForm() {
     // Initialize forms 
@@ -19,27 +14,102 @@ export function initializeGoalForm() {
     const itemRaritySelect = document.getElementById("goals-form-item-rarity");
     const characterTargetCountForm = document.getElementById("goals-form-character-target-count");
     const weaponTargetCountForm = document.getElementById("goals-form-weapon-target-count");
-    
+
     // Limit Constellation and Refinements to C0-C6 and R1-R5 respectively
     characterTargetCountForm.addEventListener("input", limitItemTargetCount);
-    weaponTargetCountForm.addEventListener("input",limitItemTargetCount);
+    weaponTargetCountForm.addEventListener("input", limitItemTargetCount);
 
     // Change item type form
     updateGoalItemForm();
     itemTypeSelect.addEventListener("change", updateGoalItemForm);
     itemRaritySelect.addEventListener("change", updateGoalItemForm);
+    document.getElementById("goals-form-character-item-name").addEventListener(
+        "change",
+        () => refreshGoalBannersForCurrentItem()
+    );
+    document.getElementById("goals-form-weapon-item-name").addEventListener(
+        "change",
+        () => refreshGoalBannersForCurrentItem()
+    );
 }
 
 // Per item type functions
-function updateGoalItemForm() {
-    const itemType = getGoalFormValues().item_type
-    const itemRarity = getGoalFormValues().item_rarity
+export function updateGoalItemForm() {
+    const goalFormValues = getGoalFormValues()
+
+    const itemType = goalFormValues.item_type
+    const itemRarity = goalFormValues.item_rarity
 
     switchItemTypeFieldset(itemType);
     renderHighPriorityOption(itemRarity);
     populateGoalItem(itemType, itemRarity);
+    populateGoalBanner(getCurrentGoalItemName());
 }
 
+function getCurrentGoalItemName() {
+    const itemType = document.getElementById("goals-form-item-type").value;
+    return document.getElementById(
+        itemType === "character"
+            ? "goals-form-character-item-name"
+            : "goals-form-weapon-item-name"
+    ).value;
+}
+
+export function refreshGoalBannersForCurrentItem(preferredBannerUuid = "") {
+    populateGoalBanner(getCurrentGoalItemName(), preferredBannerUuid);
+}
+
+function populateGoalBanner(itemName, preferredBannerUuid = "") {
+    const goalBannerForm = document.getElementById("goals-form-banner");
+    const matchingBanners = getBannersContainingItem(itemName);
+    const preferredBanner = preferredBannerUuid
+        ? getExistingBanners().find(
+            banner => banner.banner_uuid === preferredBannerUuid
+        )
+        : null;
+    if (
+        preferredBanner &&
+        !matchingBanners.some(
+            banner => banner.banner_uuid === preferredBanner.banner_uuid
+        )
+    ) {
+        matchingBanners.push(preferredBanner);
+    }
+
+    goalBannerForm.innerHTML = "";
+
+    if (matchingBanners.length === 0) {
+        const nothingFound = document.createElement("option");
+        nothingFound.value = "";
+        nothingFound.textContent = "No banner found."
+        goalBannerForm.disabled = true;
+        goalBannerForm.appendChild(nothingFound);
+        return;
+    }
+
+    matchingBanners.forEach(banner => {
+        const option = document.createElement("option");
+        option.value = banner.banner_uuid;
+        option.textContent = banner.banner_name;
+        goalBannerForm.appendChild(option);
+    });
+
+    goalBannerForm.disabled = false;
+    goalBannerForm.value = matchingBanners.some(
+        banner => banner.banner_uuid === preferredBannerUuid
+    )
+        ? preferredBannerUuid
+        : matchingBanners[0].banner_uuid;
+}
+
+
+function getBannersContainingItem(itemName) {
+    return getExistingBanners().filter(banner =>
+        banner.banner_five_item_primary === itemName ||
+        banner.banner_five_item_secondary === itemName ||
+        (banner.banner_four_items ?? []).includes(itemName)
+    );
+}
 // Per item type fieldset
 function switchItemTypeFieldset(itemType) {
     const characterFieldset = document.getElementById(
@@ -103,20 +173,15 @@ function populateGoalItem(itemType, itemRarity) {
     });
 }
 
-function limitItemTargetCount(){
-    const form = document.querySelector("#goals-form");
+function limitItemTargetCount(event) {
+    const input = event.currentTarget;
+    if (input.value === "") return;
 
-    form.querySelectorAll("input[type='number']").forEach(input => {
-        input.addEventListener("input", () => {
-            if (input.value === "") return;
+    const min = Number(input.min);
+    const max = Number(input.max);
+    const value = Number(input.value);
 
-            const min = 0;
-            const max = Number(input.max);
-            const value = Number(input.value);
-
-            input.value = Math.min(Math.max(value, min), max);
-        });
-    });
+    input.value = String(Math.min(Math.max(value, min), max));
 }
 
 export function getGoalFormValues() {
@@ -132,16 +197,19 @@ export function getGoalFormValues() {
         "goals-form-item-rarity"
     ).value;
 
-    const goalBanner = defaultBanner;
+    var goalBanner = document.getElementById(
+        "goals-form-banner"
+    ).value;
 
-
-
+    // Convert the string "null" or empty string to an actual JavaScript null token
+    var goalBanner = (goalBanner === "null" || goalBanner === "") ? null : goalBanner;
+    goalBanner = getBanner(goalBanner)
 
     /* Initialize */
     var itemTargetCount = null;;
     var itemName = null;
-    
-    if (itemType == "character"){
+
+    if (itemType == "character") {
         itemName = document.getElementById("goals-form-character-item-name").value;
         itemTargetCount = document.getElementById(
             "goals-form-character-target-count"
@@ -156,7 +224,7 @@ export function getGoalFormValues() {
     }
 
     /* Initialize as True and change depending on what the user chose for the 4* item */
-    
+
 
     return {
         goal_name: goalName,

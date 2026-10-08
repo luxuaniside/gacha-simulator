@@ -1,7 +1,6 @@
-import { getExistingGoals, getDisabledGoalIds, saveDisabledGoalIds, saveGoals, updateGoals } from "../storage.js";
-import { handleGoalSuccessMessage, handleGoalErrorMessage, clearErrorAndSuccessMessage } from "../goals/goalMessage.js";
-import { openDeleteGoalConfirmation } from "../modals.js";
-import { openEditDialog } from "../goals/goalEditor.js";
+import { getExistingGoals, getDisabledGoalIds, saveDisabledGoalIds, saveGoals } from "../storage/goals.js";
+import { handleGoalErrorMessage, clearErrorAndSuccessMessage } from "../goals/goalMessage.js";
+import { openDeleteGoalConfirmation, openEditGoalDialog } from "../modals.js";
 
 
 export function loadGoals() {
@@ -21,7 +20,7 @@ export function loadGoals() {
 
         goalsList.appendChild(clone);
     });
-        
+
     handleNoGoalsMessage(goals);
 }
 // Goal button functions
@@ -32,35 +31,23 @@ function moveItem(goals, goalIndex, direction) {
     if (newIndex < 0) {
         handleGoalErrorMessage("Cannot move goal up because it is already at the top of the list!");
         return;
-    } else if (newIndex >= goals.length){
+    } else if (newIndex >= goals.length) {
         handleGoalErrorMessage("Cannot move goal down because it is already at the bottom of the list!");
         return;
     }
 
     [goals[goalIndex], goals[newIndex]] = [goals[newIndex], goals[goalIndex]];
     clearErrorAndSuccessMessage()
-    
+
 
     saveGoals(goals)
     console.log(goals)
     loadGoals()
 }
 
-export function deleteGoal(goalUUID) {
-    const goals = getExistingGoals().filter(goal => goal.goal_uuid !== goalUUID)
-    const disabledGoalIds = getDisabledGoalIds().filter((id) => id !== goalUUID);
-    console.log("deleting!")
-    saveGoals(goals);
-    saveDisabledGoalIds(disabledGoalIds);
-    loadGoals();
-    handleGoalSuccessMessage("Successfully deleted the goal!")
-}
-
-
-
 // --- Helper Functions ---
 
-function goalCardGroupPopulate(clone, goal){
+function goalCardGroupPopulate(clone, goal) {
     populateBasicInfo(clone, goal);
     populatePriority(clone, goal);
     populateBannerInfo(clone, goal);
@@ -105,7 +92,7 @@ function populateBannerInfo(clone, goal) {
     }
 }
 
-function handleNoGoalsMessage(goals){
+function handleNoGoalsMessage(goals) {
     const noGoalsContainer = document.querySelector(".no-goals-container");
     const goalsContainer = document.getElementById("goalsContainer");
 
@@ -118,28 +105,28 @@ function handleNoGoalsMessage(goals){
     }
 }
 
-function initializeGoalButtons(clone, goal, index){
-        const toggleGoalsButton = clone.querySelector(".toggle-goal-button");
-        toggleGoalsButton.addEventListener("click", () => toggleGoal(goal.goal_uuid));
+function initializeGoalButtons(clone, goal, index) {
+    const toggleGoalsButton = clone.querySelector(".toggle-goal-button");
+    toggleGoalsButton.addEventListener("click", () => toggleGoal(goal.goal_uuid));
 
-        const deleteGoalButton = clone.querySelector(".delete-goal-button");
-        deleteGoalButton.addEventListener("click", () => openDeleteGoalConfirmation(goal.goal_uuid))
+    const deleteGoalButton = clone.querySelector(".delete-goal-button");
+    deleteGoalButton.addEventListener("click", () => openDeleteGoalConfirmation(goal.goal_uuid))
 
-        const moveUpButton = clone.querySelector(".move-up-button");
-        moveUpButton.addEventListener("click", () => moveItem(getExistingGoals(), index, -1))
+    const moveUpButton = clone.querySelector(".move-up-button");
+    moveUpButton.addEventListener("click", () => moveItem(getExistingGoals(), index, -1))
 
-        const moveDownButton = clone.querySelector(".move-down-button");
-        moveDownButton.addEventListener("click", () => moveItem(getExistingGoals(), index, +1))
+    const moveDownButton = clone.querySelector(".move-down-button");
+    moveDownButton.addEventListener("click", () => moveItem(getExistingGoals(), index, +1))
 
-        const editGoalButton = clone.querySelector(".edit-goal-button");
-        editGoalButton.addEventListener("click", () => openEditDialog(goal))
+    const editGoalButton = clone.querySelector(".edit-goal-button");
+    editGoalButton.addEventListener("click", () => openEditGoalDialog(goal))
 }
 
 // Disable Goals
 
 function toggleGoal(goalUUID) {
     var disabledGoals = getDisabledGoalIds()
-    if (disabledGoals.includes(goalUUID)){
+    if (disabledGoals.includes(goalUUID)) {
         disabledGoals = disabledGoals.filter(existingDisabledGoals => existingDisabledGoals !== goalUUID)
     } else {
         disabledGoals = [...disabledGoals, goalUUID]
@@ -148,7 +135,7 @@ function toggleGoal(goalUUID) {
     loadGoals()
 }
 
-function displayDisabledGoals(clone, goal){
+function displayDisabledGoals(clone, goal) {
     const toggleGoalsButton = clone.querySelector(".toggle-goal-button");
     const goalDisplay = clone.querySelector(".goal-display")
     const goalIsDisabled = getDisabledGoalIds().includes(goal.goal_uuid);

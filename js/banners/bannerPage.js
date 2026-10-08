@@ -1,14 +1,19 @@
 import { loadBanners } from "../components/bannerCards.js";
+import { openDeleteUnusedBannersConfirmation } from "../modals.js";
+import { initializeBannerEditor } from "./bannerEditor.js";
 import { initializeBannerForm } from "./bannerForm.js";
 import { createBanner } from "./bannersService.js";
 
 export function initializeBannersPage() {
-    loadBanners
+    loadBanners();
     initializeBannerForm();
-    //initializeBannerEditor();
+    initializeBannerEditor();
 
     const createBannerButton = document.getElementById("create-banner");
-    const deleteAllBannersButton = document.getElementById("delete-all-goals");
+    const deleteUnusedBannersButton = document.getElementById("delete-all-banners");
     createBannerButton.addEventListener("click", createBanner);
+    deleteUnusedBannersButton.addEventListener(
+        "click",
+        openDeleteUnusedBannersConfirmation
+    );
 }
-

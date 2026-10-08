@@ -15,6 +15,9 @@
     --success-border: #afd3b4;
     --success-background: #effaf0;
     --success-text: #2f7040;
+    --warning-border: #e0d2a4;
+    --warning-background: #fff9e6;
+    --warning-text: #806b1f;
     --sage: #47734f;
     --pale-sage: #e4f0e6;
 
@@ -37,6 +40,7 @@ html {
 
 body {
     margin: 0;
+    overflow-x: clip;
 }
 
 
@@ -120,6 +124,20 @@ h3 {
     overflow-y: hidden;
 
     scrollbar-width: none;
+    overscroll-behavior-x: contain;
+}
+
+.subpage-nav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--blush-white);
+}
+
+@media (min-width: 768px) {
+    .subpage-nav {
+        background: white;
+    }
 }
 
 .subpage-nav::-webkit-scrollbar,
@@ -171,6 +189,13 @@ h3 {
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
+}
+
+@media (max-width: 767px) {
+    .pity-subpage-nav {
+        flex-wrap: wrap;
+        overflow-x: hidden;
+    }
 }
 
 .subpage-container {
@@ -318,7 +343,8 @@ input[type="checkbox"]:checked::before {
 
 /* Errors or Success */
 .error-container,
-.success-container {
+.success-container,
+.warning-container {
     border-style: solid;
     border-radius: 14px;
     max-width: 100%;
@@ -344,6 +370,12 @@ input[type="checkbox"]:checked::before {
     border-color: var(--success-border);
     color: var(--success-text);
     background-color: var(--success-background);
+}
+
+.warning-container {
+    border-color: var(--warning-border);
+    color: var(--warning-text);
+    background-color: var(--warning-background);
 }
 
 /* Fieldsets */

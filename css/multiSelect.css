@@ -72,6 +72,15 @@
     background: var(--blush-white);
 }
 
+.selected-chip:disabled,
+.selected-chip:disabled:hover {
+    border-color: var(--border-lilac);
+    background: var(--blush-white);
+    color: var(--mid-lilac);
+    cursor: not-allowed;
+    opacity: 0.75;
+}
+
 .selected-chip span:first-child {
     overflow: hidden;
     text-overflow: ellipsis;
@@ -197,10 +206,16 @@
     .multi-select-input {
         gap: 3px;
         padding: 4px 6px;
+        height: auto;
+        min-height: 38px;
+        flex-wrap: wrap;
     }
 
     .selected-chips {
         gap: 4px;
+        flex-wrap: wrap;
+        overflow: visible;
+        white-space: normal;
     }
 
     .selected-chip {

@@ -23,13 +23,12 @@ export function initializeBannerForm() {
 }
 
 // Per item type functions
-function updateBannerItemForm() {
+export function updateBannerItemForm() {
     const itemType = getBannerFormValues().item_type
     const itemRarity = "five"
 
     switchItemTypeFieldset(itemType);
     populateBannerFiveItem(itemType, itemRarity);
-    console.log(getBannerFormValues())
 }
 
 // Per item type fieldset
@@ -112,7 +111,6 @@ function initializeMultiSelects() {
         document.getElementById("four-character-select"),
         LimitedFourCharacterList,
         {
-            min: 1,
             max: 3,
             selectedItems: LimitedFourCharacterList
                 .slice(0, 3)

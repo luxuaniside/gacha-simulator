@@ -14,8 +14,8 @@ function getWishingResources() {
 
 export function initalizeWishingResources(){
     const form = document.querySelector("#wishing-resources-form");
-    form.addEventListener("input", () => {
-        limitWishingResources()
+    form.addEventListener("input", event => {
+        limitNumberInput(event.target);
         const resources = getWishingResources();
         var totalWishes = calculateWishingResources(resources);
         
@@ -28,14 +28,12 @@ export function initializePityResources(){
     const characterForm = document.querySelector("#character-pity-form")
     const weaponForm = document.querySelector("#weapon-pity-form")
     
-    characterForm.addEventListener("input", () => {
-        limitPityResources();
-        getPityResources();
+    characterForm.addEventListener("input", event => {
+        limitNumberInput(event.target);
     });
 
-    weaponForm.addEventListener("input", () => {
-        limitPityResources();
-        getPityResources();
+    weaponForm.addEventListener("input", event => {
+        limitNumberInput(event.target);
     });
 
 }
@@ -65,7 +63,7 @@ function updateWishMessage(totalWishes){
     document.getElementById("wishing-resources-total").innerText = totalWishes
 }
 
-function getPityResources() {
+export function getPityResources() {
     const characterForm = document.querySelector("#character-pity-form")
     const characterFormData = new FormData(characterForm)
     const weaponForm = document.querySelector("#weapon-pity-form")
@@ -87,50 +85,16 @@ function getPityResources() {
     return pityResources;
 }
 
-function limitWishingResources(){
-    const form = document.querySelector("#wishing-resources-form");
+function limitNumberInput(target) {
+    if (!(target instanceof HTMLInputElement) || target.type !== "number" || target.value === "") {
+        return;
+    }
 
-    form.querySelectorAll("input[type='number']").forEach(input => {
-        input.addEventListener("input", () => {
-            if (input.value === "") return;
+    const min = target.min === "" ? 0 : Number(target.min);
+    const max = target.max === "" ? Infinity : Number(target.max);
+    const value = Number(target.value);
 
-            const min = 0;
-            const max = Number(input.max);
-            const value = Number(input.value);
-
-            input.value = Math.min(Math.max(value, min), max);
-        });
-    });
+    if (Number.isFinite(value)) {
+        target.value = String(Math.min(Math.max(value, min), max));
+    }
 }
-
-function limitPityResources(){
-    const characterForm = document.querySelector("#character-pity-form");
-    const weaponForm = document.querySelector("#weapon-pity-form");
-
-    characterForm.querySelectorAll("input[type='number']").forEach(input => {
-        input.addEventListener("input", () => {
-            if (input.value === "") return;
-
-            const min = 0;
-            const max = Number(input.max) || 90 
-            const value = Number(input.value);
-
-            input.value = Math.min(Math.max(value, min), max);
-        });
-    });
-
-    weaponForm.querySelectorAll("input[type='number']").forEach(input => {
-        input.addEventListener("input", () => {
-            if (input.value === "") return;
-
-            const min = 0;
-            const max = Number(input.max) || 90 
-            const value = Number(input.value);
-
-            input.value = Math.min(Math.max(value, min), max);
-        });
-    });
-
-    
-}
-
