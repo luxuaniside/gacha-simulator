@@ -43,6 +43,10 @@ body {
     overflow-x: clip;
 }
 
+button {
+    font-family: var(--font-main-text);
+}
+
 
 /* Forms */
 
@@ -157,7 +161,7 @@ h3 {
     background: transparent;
     color: var(--mid-lilac);
 
-    font-family: var(--font-headers);
+    font-family: var(--font-main-text);
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
@@ -410,7 +414,8 @@ fieldset {
     width: 100%;
 }
 
-.form-buttons button {
+.form-buttons button,
+.form-buttons .file-upload-button {
     flex: 1 1 200px;
     padding: 8px 12px;
 
@@ -428,12 +433,39 @@ fieldset {
     transition: background 0.15s, border-color 0.15s;
 }
 
-.form-buttons button:hover {
-    background: var(--blush-white);
-    border-color: var(--dark-lilac)
+.form-buttons .file-upload-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 0;
 }
 
-.form-buttons button:focus {
+.form-buttons .character-file-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.form-buttons .file-upload-button:hover,
+.form-buttons button:hover {
+    background: var(--blush-white);
+    border-color: var(--dark-lilac);
+}
+
+.form-buttons .character-file-input:focus-visible + .file-upload-button {
+    outline: 2px solid var(--soft-lilac);
+    outline-offset: 2px;
+    border-color: var(--soft-lilac);
+}
+
+.form-buttons button:focus,
+.form-buttons .file-upload-button:focus {
     outline: none;
     border-color: var(--soft-lilac);
 }

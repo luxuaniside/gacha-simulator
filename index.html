@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/modals.css">
     <link rel="stylesheet" href="css/banners.css">
     <link rel="stylesheet" href="css/multiSelect.css">
+    <link rel="stylesheet" href="css/characters.css">
 
 
 </head>
@@ -23,7 +24,6 @@
         <button class="subpage-tab is-active" id="resources-tab" data-target="resources-subpage">Resources</button>
         <button class="subpage-tab" id="goals-tab" data-target="goals-subpage">Goals</button>
         <button class="subpage-tab" id="banners-tab" data-target="banners-subpage">Banners</button>
-        <button class="subpage-tab" id="custom-items-tab" data-target="custom-items-subpage">Custom Items</button>
         <button class="subpage-tab" id="characters-tab" data-target="characters-subpage">Characters</button>
         <button class="subpage-tab" id="simulation-tab" data-target="simulation-subpage">Simulation</button>
     </nav>
@@ -528,24 +528,39 @@
             </form>
         </section>
 
-        <section class="subpage" id="custom-items-subpage">
-            <form class="form" id="custom-items-subpage">
-                <h2> Custom Items </h2>
-                <p> Coming Soon </p>
-            </form>
-        </section>
+
         <section class="subpage" id="characters-subpage">
             <form class="form">
                 <h2>Characters</h2>
-                <p> Optional character input to simulate Starglitter Refund with a higher accuracy accounting for your
-                    constellations.</p>
-                <label for="characters-form-json-input">Upload Character Data</label>
-                <input id="characters-form-json-input" accept=".json" type="file" name="character-data">
-                <div class="success-container" id="characters-success-container" hidden></div>
-                <div class="error-container" id="characters-error-container" hidden></div>
-
+                <p> You can choose to input your <strong> currently owned </strong> roster and their constellations for
+                    a better starglitter refund calculation accuracy. Upload a GOOD-format export from
+                    <a class="help-link" href="https://github.com/konkers/irminsul" target="_blank"
+                        rel="noopener noreferrer">Irminsul</a> or import manually using presets or the area below.
+                </p>
+                <div class="success-container" id="characters-form-success-container" hidden></div>
+                <div class="warning-container" id="characters-form-warning-container" hidden></div>
+                <div class="error-container" id="characters-form-error-container" hidden></div>
                 <div class="form-buttons">
+                    <input class="character-file-input" id="characters-form-json-input" accept=".json" type="file"
+                        name="character-data">
+                    <label class="file-upload-button" for="characters-form-json-input">Choose File</label>
+                    <button id="load-character-data" type="button">Load File</button>
                     <button id="delete-character-data" type="button">Delete Character Data</button>
+                    <button id="open-character-presets" type="button">Character Presets</button>
+                </div>
+                <div id="characters-form-roster" class="character-roster">
+                    <section class="character-roster-section" aria-labelledby="recommended-characters-heading">
+                        <h3 id="recommended-characters-heading">Recommended</h3>
+                        <p> These characters represent a major part of your Starglitter Refund. It is recommended to
+                            input their <strong>currently owned</strong> constellation.</p>
+                        <div id="recommended-characters" class="character-chip-grid"></div>
+                    </section>
+                    <section class="character-roster-section" aria-labelledby="other-characters-heading">
+                        <h3 id="other-characters-heading">Other Characters</h3>
+                        <p> These characters are not present within any goal or banner. For maximum starglitter
+                            simulation accuracy, input the ones below. </p>
+                        <div id="other-characters" class="character-chip-grid"></div>
+                    </section>
                 </div>
             </form>
 
@@ -606,8 +621,7 @@
 
             <div class="form-field">
                 <label for="quick-banner-name">Banner Name</label>
-                <input id="quick-banner-name" name="banner-name" type="text"
-                    placeholder="Optional Banner Name">
+                <input id="quick-banner-name" name="banner-name" type="text" placeholder="Optional Banner Name">
             </div>
 
             <fieldset id="quick-banner-character-fieldset" class="banners-item-fieldset">
@@ -899,6 +913,51 @@
                 <button id="cancel-banner-edit" type="button">
                     Cancel
                 </button>
+            </div>
+        </form>
+    </dialog>
+    <dialog class="modal" id="character-presets-dialog" aria-labelledby="character-presets-title">
+        <form class="form" id="character-presets-form">
+            <h2 id="character-presets-title">Character Presets</h2>
+            <p>If you cannot automatically import, you can use presets. These set the constellation value for every
+                character in a group. This also marks unowned characters as owned.</p>
+
+            <div class="form-field">
+                <label for="character-presets-section">Character Section</label>
+                <select id="character-presets-section" name="character-section">
+                    <option value="all-sections">All characters</option>
+                    <option value="recommended">Recommended characters</option>
+                    <option value="other">Other characters</option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label for="character-presets-group">Character Group</label>
+                <select id="character-presets-group" name="character-group">
+                    <option value="all">All characters</option>
+                    <option value="five">All 5✦ characters</option>
+                    <option value="four">All 4✦ characters</option>
+                    <option value="standard-five">Standard 5✦ characters</option>
+                    <option value="limited-five">Limited 5✦ characters</option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label for="character-presets-constellation">Set Constellation</label>
+                <select id="character-presets-constellation" name="constellation">
+                    <option value="0">C0</option>
+                    <option value="1">C1</option>
+                    <option value="2">C2</option>
+                    <option value="3">C3</option>
+                    <option value="4">C4</option>
+                    <option value="5">C5</option>
+                    <option value="6" selected>C6</option>
+                </select>
+            </div>
+
+            <div class="form-buttons">
+                <button id="apply-character-preset" type="button">Apply Preset</button>
+                <button id="cancel-character-preset" type="button">Cancel</button>
             </div>
         </form>
     </dialog>

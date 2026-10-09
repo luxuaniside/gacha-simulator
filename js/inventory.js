@@ -13,6 +13,7 @@ export const LimitedFiveCharacterList = [
     { display: "Yoimiya", value: "Yoimiya" },
     { display: "Raiden Shogun", value: "RaidenShogun" },
     { display: "Sangonomiya Kokomi", value: "SangonomiyaKokomi" },
+    { display: "Arataki Itto", value: "AratakiItto" },
     { display: "Shenhe", value: "Shenhe" },
     { display: "Yae Miko", value: "YaeMiko" },
     { display: "Kamisato Ayato", value: "KamisatoAyato" },
@@ -40,6 +41,7 @@ export const LimitedFiveCharacterList = [
     { display: "Chasca", value: "Chasca" },
     { display: "Citlali", value: "Citlali" },
     { display: "Mavuika", value: "Mavuika" },
+    { display: "Varesa", value: "Varesa" },
     { display: "Escoffier", value: "Escoffier" },
     { display: "Skirk", value: "Skirk" },
     { display: "Ineffa", value: "Ineffa" },
@@ -56,12 +58,13 @@ export const LimitedFiveCharacterList = [
     { display: "Sandrone", value: "Sandrone" },
     { display: "Odette", value: "Odette" },
     { display: "Vesna", value: "Vesna" },
-    { display: "Vodyanitsa", value: "Vodyanitsa"},
-    { display: "Mitya", value: "Mitya"},
-    { display: "Anastasya", value: "Anastasya"},
-    { display: "Noy", value: "Noy"}
+    { display: "Vodyanitsa", value: "Vodyanitsa" },
+    { display: "Mitya", value: "Mitya" },
+    { display: "Anastasya", value: "Anastasya" },
+    { display: "Danica", value: "Danica" },
+    { display: "Noy", value: "Noy" }
 
-  ];
+];
 
 export const StandardFiveCharacterList = [
     { display: "Mona", value: "Mona" },
@@ -123,7 +126,7 @@ export const LimitedFourCharacterList = [
     { display: "Illuga", value: "Illuga" },
     { display: "Prune", value: "Prune" },
     { display: "Alyosha", value: "Alyosha" },
-    { display: "Valeriy", value: "Valeriy"},
+    { display: "Valeriy", value: "Valeriy" },
 ];
 
 export const StandardFourCharacterList = [
@@ -146,9 +149,9 @@ export const LimitedFiveWeaponList = [
     { display: "Peak Patrol Song", value: "PeakPatrolSong" },
     { display: "Azurelight", value: "Azurelight" },
     { display: "Athame Artis", value: "AthameArtis" },
-    { display: "Lightbearing Moonshard", value: "LightbearingMoonshard"},
-    { display: "Whitelake Frostfeather", value: "WhitelakeFrostfeather"}, // Odette Signature
-    { display: "Beyond the Chrysalis", value: "BeyondTheChrysalis"}, // Vesna Signature
+    { display: "Lightbearing Moonshard", value: "LightbearingMoonshard" },
+    { display: "Whitelake Frostfeather", value: "WhitelakeFrostfeather" }, // Odette Signature
+    { display: "Beyond the Chrysalis", value: "BeyondTheChrysalis" }, // Vesna Signature
     { display: "Song of Broken Pines", value: "SongOfBrokenPines" },
     { display: "The Unforged", value: "TheUnforged" },
     { display: "Redhorn Stonethresher", value: "RedhornStonethresher" },
@@ -157,7 +160,7 @@ export const LimitedFiveWeaponList = [
     { display: "Fang of the Mountain King", value: "FangOfTheMountainKing" },
     { display: "A Thousand Blazing Suns", value: "AThousandBlazingSuns" },
     { display: "Gest of the Mighty Wolf", value: "GestOfTheMightyWolf" },
-    { display: "A Teaspoon of Transcendence", value: "ATeaspoonOfTranscendence"}, // Sandrone Signature
+    { display: "A Teaspoon of Transcendence", value: "ATeaspoonOfTranscendence" }, // Sandrone Signature
     { display: "Staff of Homa", value: "StaffOfHoma" },
     { display: "Vortex Vanquisher", value: "VortexVanquisher" },
     { display: "Calamity Queller", value: "CalamityQueller" },
@@ -186,7 +189,7 @@ export const LimitedFiveWeaponList = [
     { display: "Reliquary of Truth", value: "ReliquaryOfTruth" },
     { display: "Nocturne's Curtain Call", value: "NocturnesCurtainCall" },
     { display: "Angelos' Heptades", value: "AngelosHeptades" },
-    { display: "Hymn of the Maelstrom", value: "HymnOfTheMaelstrom"}, // Vodyanitsa Signature
+    { display: "Hymn of the Maelstrom", value: "HymnOfTheMaelstrom" }, // Vodyanitsa Signature
     { display: "Elegy for the End", value: "ElegyForTheEnd" },
     { display: "Polar Star", value: "PolarStar" },
     { display: "Aqua Simulacra", value: "AquaSimulacra" },
@@ -197,10 +200,10 @@ export const LimitedFiveWeaponList = [
     { display: "Astral Vulture's Crimson Plumage", value: "AstralVulturesCrimsonPlumage" },
     { display: "The Daybreak Chronicles", value: "TheDaybreakChronicles" },
     { display: "Golden Frostbound Oath", value: "GoldenFrostboundOath" },
-    { display: "Mitya Signature", value: "MityaSignature"},
-    { display: "Anastasya Signature", value: "AnastasyaSignature"},
-    { display: "Danica Signature", value: "DanicaSignature"},
-    { display: "Noy Signature", value: "NoySignature"},
+    { display: "Mitya Signature", value: "MityaSignature" },
+    { display: "Anastasya Signature", value: "AnastasyaSignature" },
+    { display: "Danica Signature", value: "DanicaSignature" },
+    { display: "Noy Signature", value: "NoySignature" },
 ];
 
 export const StandardFiveWeaponList = [
@@ -216,31 +219,24 @@ export const StandardFiveWeaponList = [
 ];
 
 export const LimitedFourWeaponList = [
-    { display: "Favonius Sword", value: "FavoniusSword" },
-    { display: "The Flute", value: "TheFlute" },
-    { display: "Sacrificial Sword", value: "SacrificialSword" },
-    { display: "Lion's Roar", value: "LionsRoar" },
-    { display: "The Alley Flash", value: "TheAlleyFlash" },
-    { display: "Xiphos' Moonlight", value: "XiphosMoonlight" },
-    { display: "The Dockhand's Assistant", value: "TheDockhandsAssistant" },
-    { display: "Sturdy Bone", value: "SturdyBone" },
-    { display: "Moonweaver's Dawn", value: "MoonweaversDawn" },
     { display: "Favonius Greatsword", value: "FavoniusGreatsword" },
     { display: "The Bell", value: "TheBell" },
     { display: "Sacrificial Greatsword", value: "SacrificialGreatsword" },
     { display: "Rainslasher", value: "Rainslasher" },
     { display: "Lithic Blade", value: "LithicBlade" },
     { display: "Makhaira Aquamarine", value: "MakhairaAquamarine" },
-    { display: "Akoumaru", value: "Akoumaru" },
+    { display: "Akuoumaru", value: "Akuoumaru" },
     { display: "Portable Power Saw", value: "PortablePowerSaw" },
-    { display: "Fruitfool Hook", value: "FruitfoolHook" },
+    { display: "Fruitful Hook", value: "FruitfulHook" },
+
     { display: "Dragon's Bane", value: "DragonsBane" },
     { display: "Lithic Spear", value: "LithicSpear" },
     { display: "Favonius Lance", value: "FavoniusLance" },
     { display: "Wavebreaker's Fin", value: "WavebreakersFin" },
-    { display: "Protector's Drill", value: "ProtectorsDrill" },
+    { display: "Prospector's Drill", value: "ProspectorsDrill" },
     { display: "Mountain-Bracing Bolt", value: "MountainBracingBolt" },
     { display: "Sacrificer's Staff", value: "SacrificersStaff" },
+
     { display: "Favonius Codex", value: "FavoniusCodex" },
     { display: "The Widsith", value: "TheWidsith" },
     { display: "Sacrificial Fragments", value: "SacrificialFragments" },
@@ -249,6 +245,7 @@ export const LimitedFourWeaponList = [
     { display: "Wandering Evenstar", value: "WanderingEvenstar" },
     { display: "Waveriding Whirl", value: "WaveridingWhirl" },
     { display: "Dawning Frost", value: "DawningFrost" },
+
     { display: "Favonius Warbow", value: "FavoniusWarbow" },
     { display: "The Stringless", value: "TheStringless" },
     { display: "Sacrificial Bow", value: "SacrificialBow" },
@@ -257,7 +254,12 @@ export const LimitedFourWeaponList = [
     { display: "Mitternachts Waltz", value: "MitternachtsWaltz" },
     { display: "Mouun's Moon", value: "MouunsMoon" },
     { display: "Range Gauge", value: "RangeGauge" },
-    { display: "Flower-Wreathed Flowers", value: "FlowerWreathedFlowers" }
+    { display: "Flower-Wreathed Feathers", value: "FlowerWreathedFeathers" },
+
+    // Additional Wish-obtainable weapons
+    { display: "New Bough", value: "NewBough" },
+    { display: "Winter's Heavy Heart", value: "WintersHeavyHeart" },
+    { display: "Breezeborne Refrain", value: "BreezeborneRefrain" }
 ];
 
 export const StandardWeaponList = [

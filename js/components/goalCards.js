@@ -41,7 +41,6 @@ function moveItem(goals, goalIndex, direction) {
 
 
     saveGoals(goals)
-    console.log(goals)
     loadGoals()
 }
 

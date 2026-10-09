@@ -19,7 +19,6 @@ export function loadBanners() {
         bannersList.appendChild(clone);
     });
 
-    console.log("Temporary banner loading")
     handleNoBannersMessage(banners)
     fitBannerNames();
 }

@@ -29,7 +29,6 @@ export function deleteBanner(bannerUUID, banner) {
             banner => banner.banner_uuid !== bannerUUID
         );
 
-        console.log("deleting!");
         saveBanners(banners);
 
         loadBanners();
@@ -59,8 +58,13 @@ export function deleteUnusedBanners() {
         banner => usedBannerUUIDs.has(banner.banner_uuid)
     );
 
+    if (!Array.isArray(banners) || banners.length === 0) {
+        handleBannerSuccessMessage(
+            "Succesfully deleted all banners!"
+        );
+        return;
+    }
     saveBanners(remainingBanners);
-    console.log(remainingBanners.length, banners.length)
     if (remainingBanners.length === banners.length) {
         handleBannerErrorMessage(
             "Could not delete any banner as all of them are used by goals."
@@ -71,7 +75,7 @@ export function deleteUnusedBanners() {
         );
     } else {
         handleBannerSuccessMessage(
-            "Removed all banners not used by any goal!"
+            "Succesfully deleted all banners!"
         );
     }
 }

@@ -52,9 +52,11 @@
 #edit-goal-dialog #edit-goals-form,
 #edit-banner-dialog #edit-banner-form,
 #quick-banner-dialog #quick-banner-form,
+#character-presets-dialog #character-presets-form,
 #edit-goal-dialog .form,
 #edit-banner-dialog .form,
 #quick-banner-dialog .form,
+#character-presets-dialog .form,
 .edit-banner-dialog .edit-banners-form {
     width: 100%;
     margin: 0;
@@ -66,7 +68,8 @@
 
 #edit-goal-dialog h2,
 #edit-banner-dialog h2,
-#quick-banner-dialog h2 {
+#quick-banner-dialog h2,
+#character-presets-dialog h2 {
     font-size: 1.5rem;
     margin: 0 0 1rem;
     line-height: 1.1;
@@ -109,7 +112,8 @@
 
 #edit-goal-dialog .form-buttons,
 #edit-banner-dialog .form-buttons,
-#quick-banner-dialog .form-buttons {
+#quick-banner-dialog .form-buttons,
+#character-presets-dialog .form-buttons {
     display: flex;
     flex-direction: column;
     gap: 0.7rem;
@@ -118,7 +122,8 @@
 
 #edit-goal-dialog .form-buttons button,
 #edit-banner-dialog .form-buttons button,
-#quick-banner-dialog .form-buttons button {
+#quick-banner-dialog .form-buttons button,
+#character-presets-dialog .form-buttons button {
     width: 100%;
     flex: 1 1 auto;
     min-height: 44px;
@@ -133,7 +138,8 @@
 
 #edit-goal-dialog .form-buttons button:hover,
 #edit-banner-dialog .form-buttons button:hover,
-#quick-banner-dialog .form-buttons button:hover {
+#quick-banner-dialog .form-buttons button:hover,
+#character-presets-dialog .form-buttons button:hover {
     border-color: var(--soft-lilac);
     background: #f0eef9;
 }

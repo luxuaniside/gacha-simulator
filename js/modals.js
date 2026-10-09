@@ -109,7 +109,6 @@ export function openDeleteUnusedBannersConfirmation() {
 
 // Edit Banners
 export function openEditBannerDialog(banner) {
-    console.log("Hey")
     const editDialog = document.getElementById("edit-banner-dialog")
 
     populateEditBannerForm(banner)

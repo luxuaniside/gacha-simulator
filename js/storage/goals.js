@@ -13,7 +13,6 @@ export function saveGoals(goals) {
 export function deleteGoal(goalUUID) {
     const goals = getExistingGoals().filter(goal => goal.goal_uuid !== goalUUID)
     const disabledGoalIds = getDisabledGoalIds().filter((id) => id !== goalUUID);
-    console.log("deleting!")
     saveGoals(goals);
     saveDisabledGoalIds(disabledGoalIds);
     loadGoals();
@@ -22,7 +21,6 @@ export function deleteGoal(goalUUID) {
 
 export function deleteAllGoals() {
     localStorage.removeItem("goals");
-    console.log("clearing all goals")
 }
 
 export function getGoal(goalUUID) {

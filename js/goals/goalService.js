@@ -14,7 +14,6 @@ export async function createGoal() {
         new_goal: getGoalFormValues(),
     };
 
-    console.log(request.new_goal)
     const response = await apiFetch("/goals", {
         method: "POST",
         headers: {
