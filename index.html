@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/banners.css">
     <link rel="stylesheet" href="css/multiSelect.css">
     <link rel="stylesheet" href="css/characters.css">
+    <link rel="stylesheet" href="css/simulation.css">
 
 
 </head>
@@ -26,6 +27,7 @@
         <button class="subpage-tab" id="banners-tab" data-target="banners-subpage">Banners</button>
         <button class="subpage-tab" id="characters-tab" data-target="characters-subpage">Characters</button>
         <button class="subpage-tab" id="simulation-tab" data-target="simulation-subpage">Simulation</button>
+        <button class="subpage-tab" id="simulation-results-tab" data-target="simulation-results-subpage">Results</button>
     </nav>
     <main class="subpage-container">
         <section class="subpage is-active" id="resources-subpage">
@@ -567,27 +569,62 @@
 
         </section>
         <section class="subpage" id="simulation-subpage">
-            <form class="form" id="simulation-form">
+            <form class="form simulation-form" id="simulation-form">
                 <h2>Simulation</h2>
+                <p class="simulation-form-intro">Choose how many runs to average and how wishes should continue to be used.</p>
 
-                <div class="form-field">
-                    <label for="simulation-form-iteration-count">Iteration Count</label>
-                    <input id="simulation-form-iteration-count" type="number" min="1" max="50000" step="1000"
-                        value="10000" name="iteration-count">
-                </div>
-                <div class="form-field">
-                    <label for="simulation-form-continue-after-goals">Continue wishing after goals are fulfilled</label>
-                    <input id="simulation-form-continue-after-goals" type="checkbox" name="continue-after-goals">
-                </div>
-                <div class="form-field">
-                    <label for="simulation-form-starglitter-simulation">Reuse Starglitter</label>
-                    <input id="simulation-form-starglitter-simulation" type="checkbox" name="reuse-starglitter">
+                <div class="form-grid simulation-form-grid">
+                    <div class="form-field">
+                        <label for="simulation-form-iteration-count">Iteration Count</label>
+                        <input id="simulation-form-iteration-count" type="number" min="1" max="50000" step="1000"
+                            value="10000" name="iteration-count">
+                        <span class="simulation-form-hint">More iterations give steadier averages, but take longer.</span>
+                    </div>
                 </div>
 
-                <button class="run-simulation api-required" type=button>Run Simulation</button>
+                <fieldset class="simulation-settings-fieldset">
+                    <legend>Wish Settings</legend>
+                    <div class="checkbox-container simulation-settings-options">
+                        <label class="checkbox-field" for="simulation-form-continue-after-goals">
+                            <span>
+                                <strong>Continue after goals are fulfilled</strong>
+                                <small>Keep wishing with remaining resources after every goal is complete.</small>
+                            </span>
+                            <input id="simulation-form-continue-after-goals" type="checkbox"
+                                name="continue-after-goals">
+                        </label>
+                        <label class="checkbox-field" for="simulation-form-starglitter-simulation">
+                            <span>
+                                <strong>Reuse Starglitter</strong>
+                                <small>Use Starglitter earned from wishes to buy more wishes.</small>
+                            </span>
+                            <input id="simulation-form-starglitter-simulation" type="checkbox"
+                                name="reuse-starglitter" checked>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <div class="form-buttons simulation-form-buttons">
+                    <button class="run-simulation api-required" type="button">Run Simulation</button>
+                </div>
+
+                <div class="simulation-progress-container" id="simulation-progress-container" hidden>
+                    <div class="simulation-progress-heading">
+                        <span id="simulation-progress-message" role="status" aria-live="polite">Preparing simulation...</span>
+                        <span id="simulation-progress-percentage">0%</span>
+                    </div>
+                    <progress id="simulation-progress" max="100" value="0" aria-label="Simulation progress"></progress>
+                </div>
                 <div class="success-container" id="simulation-success-container" hidden></div>
                 <div class="error-container" id="simulation-error-container" hidden></div>
             </form>
+        </section>
+        <section class="subpage" id="simulation-results-subpage">
+            <div class="simulation-results-page">
+                <h2>Simulation Results</h2>
+                <p id="simulation-results-empty">Run a simulation to see its results here.</p>
+                <div id="simulation-results-content" hidden></div>
+            </div>
         </section>
 
     </main>

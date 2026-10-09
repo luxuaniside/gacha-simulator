@@ -190,6 +190,7 @@ h3 {
 /* Main Content */
 .subpage-container,
 .pity-subpage-container {
+    position: relative;
     width: 100%;
     max-width: 900px;
     margin: 0 auto;
@@ -208,6 +209,9 @@ h3 {
 
 .subpage {
     grid-area: 1 / 1;
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
 
     opacity: 0;
     transform: translateY(8px);
@@ -219,6 +223,7 @@ h3 {
 }
 
 .subpage.is-active {
+    position: relative;
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;
@@ -236,6 +241,9 @@ h3 {
 
 .pity-subpage {
     grid-area: 1 / 1;
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 100%;
 
     opacity: 0;
     pointer-events: none;
@@ -246,6 +254,7 @@ h3 {
 }
 
 .pity-subpage.is-active {
+    position: relative;
     opacity: 1;
     pointer-events: auto;
 }

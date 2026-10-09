@@ -1,4 +1,4 @@
-function getWishingResources() {
+export function getWishingResources() {
     const form = document.querySelector("#wishing-resources-form");
     const formData = new FormData(form);
 
