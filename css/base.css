@@ -47,6 +47,66 @@ button {
     font-family: var(--font-main-text);
 }
 
+.api-required[aria-disabled="true"] {
+    position: relative;
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+.api-required[aria-disabled="true"]:hover,
+.api-required[aria-disabled="true"]:focus-visible,
+.api-required.api-loading-tooltip-visible {
+    z-index: 2147483647;
+}
+
+.api-required[aria-disabled="true"]::after {
+    position: absolute;
+    z-index: 2147483647;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    width: max-content;
+    max-width: min(260px, 85vw);
+    padding: 7px 10px;
+    border: 1px solid var(--border-lilac);
+    border-radius: 7px;
+    background: var(--blush-white);
+    box-shadow: 0 3px 12px rgb(43 43 43 / 14%);
+    color: var(--dark-lilac);
+    content: attr(data-api-tooltip);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.35;
+    opacity: 0;
+    pointer-events: none;
+    text-align: center;
+    transform: translate(-50%, 4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    visibility: hidden;
+}
+
+.api-required[aria-disabled="true"]:hover::after,
+.api-required[aria-disabled="true"]:focus-visible::after,
+.api-required.api-loading-tooltip-visible::after {
+    opacity: 1;
+    transform: translate(-50%, 0);
+    visibility: visible;
+}
+
+@media (max-width: 600px) {
+    .api-required[aria-disabled="true"]::after {
+        right: 0;
+        left: auto;
+        max-width: min(260px, calc(100vw - 24px));
+        transform: translateY(4px);
+    }
+
+    .api-required[aria-disabled="true"]:hover::after,
+    .api-required[aria-disabled="true"]:focus-visible::after,
+    .api-required.api-loading-tooltip-visible::after {
+        transform: translateY(0);
+    }
+}
+
 
 /* Forms */
 
@@ -204,13 +264,12 @@ h3 {
 }
 
 .subpage-container {
-    display: grid;
+    display: block;
 }
 
 .subpage {
-    grid-area: 1 / 1;
-    position: absolute;
-    inset: 0 auto auto 0;
+    display: none;
+    position: relative;
     width: 100%;
 
     opacity: 0;
@@ -223,7 +282,7 @@ h3 {
 }
 
 .subpage.is-active {
-    position: relative;
+    display: block;
     opacity: 1;
     transform: translateY(0);
     pointer-events: auto;

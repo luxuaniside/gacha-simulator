@@ -9,6 +9,11 @@
     align-items: center;
 }
 
+.help:hover,
+.help:focus-within {
+    z-index: 2147483647;
+}
+
 .label-with-help {
     display: inline-flex;
     align-items: center;
@@ -48,17 +53,18 @@
 }
 
 .help-tooltip {
-    position: absolute;
-    z-index: 100;
+    position: fixed;
+    z-index: 2147483647;
 
-    left: 50%;
-    bottom: calc(100% + 8px);
-    transform: translateX(-50%);
+    top: 0;
+    left: 0;
 
-    width: 220px;
+    width: min(220px, calc(100vw - 24px));
+    max-height: calc(100vh - 24px);
     padding: 9px 11px;
 
     box-sizing: border-box;
+    overflow-y: auto;
 
     background: white;
     border: 1px solid var(--border-lilac);
@@ -76,9 +82,7 @@
     visibility: hidden;
     pointer-events: auto;
 
-    transition:
-        opacity 0.15s ease,
-        visibility 0.15s ease;
+    transition: opacity 0.15s ease, visibility 0.15s ease;
 }
 
 .help:hover .help-tooltip,

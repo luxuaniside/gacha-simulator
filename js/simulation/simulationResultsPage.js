@@ -1,3 +1,5 @@
+import { registerApiDependentButton } from "../apiConnection.js";
+
 const RESULTS_STORAGE_KEY = "latestSimulationResults";
 
 function createMetric(label, value, emphasis = "secondary") {
@@ -192,10 +194,11 @@ export function renderSimulationResults(
     summary.textContent = `${formatNumber(iterationCount, 0)} iterations`;
 
     const rerunButton = document.createElement("button");
-    rerunButton.className = "simulation-results-rerun";
+    rerunButton.className = "simulation-results-rerun api-required";
     rerunButton.type = "button";
     rerunButton.textContent = "Rerun Simulation";
     rerunButton.setAttribute("aria-label", "Rerun simulation with current settings");
+    registerApiDependentButton(rerunButton);
     rerunButton.addEventListener("click", () => {
         document.querySelector("#simulation-form .run-simulation")?.click();
     });

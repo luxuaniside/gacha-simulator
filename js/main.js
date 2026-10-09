@@ -1,4 +1,8 @@
 import { initialiazeMainTabNavigation, initializeSubTabNavigation } from "./tabs.js";
+import { initializeApiConnection } from "./apiConnection.js";
+import { initializeHelpTooltips } from "./helpTooltips.js";
+initializeApiConnection();
+initializeHelpTooltips();
 initialiazeMainTabNavigation();
 initializeSubTabNavigation();
 

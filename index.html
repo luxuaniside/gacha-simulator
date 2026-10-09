@@ -27,7 +27,8 @@
         <button class="subpage-tab" id="banners-tab" data-target="banners-subpage">Banners</button>
         <button class="subpage-tab" id="characters-tab" data-target="characters-subpage">Characters</button>
         <button class="subpage-tab" id="simulation-tab" data-target="simulation-subpage">Simulation</button>
-        <button class="subpage-tab" id="simulation-results-tab" data-target="simulation-results-subpage">Results</button>
+        <button class="subpage-tab" id="simulation-results-tab"
+            data-target="simulation-results-subpage">Results</button>
     </nav>
     <main class="subpage-container">
         <section class="subpage is-active" id="resources-subpage">
@@ -383,9 +384,9 @@
                 <div class="success-container" id="goal-form-success-container" hidden></div>
                 <div class="error-container" id="goal-form-error-container" hidden></div>
                 <div class="form-buttons">
-                    <button class="api-required" id="create-goal" type="button">Create Goal</button>
+                    <button class="api-required" id="create-goal" type="button" disabled>Create Goal</button>
                     <button id="delete-all-goals" type="button">Delete All Goals</button>
-                    <button class="api-required" id="create-banner-with-goal" type="button">Create Banner with
+                    <button class="api-required" id="create-banner-with-goal" type="button" disabled>Create Banner with
                         Goal</button>
                 </div>
 
@@ -516,7 +517,7 @@
                 <div class="error-container" id="banner-form-error-container" hidden></div>
                 <div class="warning-container" id="banner-form-warning-container" hidden></div>
                 <div class="form-buttons">
-                    <button class="api-required" id="create-banner" type="button">Create Banner</button>
+                    <button class="api-required" id="create-banner" type="button" disabled>Create Banner</button>
                     <button id="delete-all-banners" type="button">Delete All Banners</button>
                 </div>
                 <div class="no-banners-container" hidden>
@@ -571,14 +572,16 @@
         <section class="subpage" id="simulation-subpage">
             <form class="form simulation-form" id="simulation-form">
                 <h2>Simulation</h2>
-                <p class="simulation-form-intro">Choose how many runs to average and how wishes should continue to be used.</p>
+                <p class="simulation-form-intro">Choose how many runs to average and how wishes should continue to be
+                    used.</p>
 
                 <div class="form-grid simulation-form-grid">
                     <div class="form-field">
                         <label for="simulation-form-iteration-count">Iteration Count</label>
                         <input id="simulation-form-iteration-count" type="number" min="1" max="50000" step="1000"
                             value="10000" name="iteration-count">
-                        <span class="simulation-form-hint">More iterations give steadier averages, but take longer.</span>
+                        <span class="simulation-form-hint">More iterations give steadier averages, but take
+                            longer.</span>
                     </div>
                 </div>
 
@@ -598,19 +601,20 @@
                                 <strong>Reuse Starglitter</strong>
                                 <small>Use Starglitter earned from wishes to buy more wishes.</small>
                             </span>
-                            <input id="simulation-form-starglitter-simulation" type="checkbox"
-                                name="reuse-starglitter" checked>
+                            <input id="simulation-form-starglitter-simulation" type="checkbox" name="reuse-starglitter"
+                                checked>
                         </label>
                     </div>
                 </fieldset>
 
                 <div class="form-buttons simulation-form-buttons">
-                    <button class="run-simulation api-required" type="button">Run Simulation</button>
+                    <button class="run-simulation api-required" type="button" disabled>Run Simulation</button>
                 </div>
 
                 <div class="simulation-progress-container" id="simulation-progress-container" hidden>
                     <div class="simulation-progress-heading">
-                        <span id="simulation-progress-message" role="status" aria-live="polite">Preparing simulation...</span>
+                        <span id="simulation-progress-message" role="status" aria-live="polite">Preparing
+                            simulation...</span>
                         <span id="simulation-progress-percentage">0%</span>
                     </div>
                     <progress id="simulation-progress" max="100" value="0" aria-label="Simulation progress"></progress>
@@ -694,7 +698,7 @@
             <div class="error-container" id="quick-banner-error-container" hidden></div>
 
             <div class="form-buttons">
-                <button class="api-required" id="quick-banner-create" type="button">Create Banner</button>
+                <button class="api-required" id="quick-banner-create" type="button" disabled>Create Banner</button>
                 <button id="quick-banner-cancel" type="button">Close</button>
             </div>
         </form>
@@ -846,7 +850,7 @@
             <div class="success-container" id="goal-form-success-container" hidden></div>
             <div class="error-container" id="goal-form-error-container" hidden></div>
             <div class="form-buttons">
-                <button class="api-required" id="save-edited-goal" type="button">Save Goal Changes</button>
+                <button class="api-required" id="save-edited-goal" type="button" disabled>Save Goal Changes</button>
                 <button id="cancel-editing-goal" type="button">Cancel</button>
             </div>
         </form>
@@ -943,7 +947,7 @@
             <div class="success-container" id="edit-banner-success-container" hidden></div>
 
             <div class="form-buttons">
-                <button class="api-required" id="save-banner-edit" type="button">
+                <button class="api-required" id="save-banner-edit" type="button" disabled>
                     Save Banner Changes
                 </button>
 
