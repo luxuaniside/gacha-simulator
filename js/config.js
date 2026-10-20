@@ -1,2 +1,5 @@
-export const API_BASE_URL =
-    "https://gacha-simulator-api.onrender.com";
+export const API_BASE_URL = window.location.hostname === "localhost"
+    || window.location.hostname === "127.0.0.1"
+    ? "http://127.0.0.1:8000"
+    : "https://gacha-simulator-api.onrender.com";
+
