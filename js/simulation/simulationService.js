@@ -53,7 +53,7 @@ function readApiError(result) {
     return `${result.message || "Simulation request failed."}${details}`;
 }
 
-export async function runSimulation(request, onProgress = () => {}) {
+export async function runSimulation(request, onProgress = () => { }) {
     const response = await apiFetch("/simulation", {
         method: "POST",
         headers: {
@@ -63,6 +63,7 @@ export async function runSimulation(request, onProgress = () => {}) {
     });
 
     const result = await response.json();
+    console.log(result)
     if (!response.ok) {
         throw new Error(readApiError(result));
     }
@@ -73,7 +74,7 @@ export async function runSimulation(request, onProgress = () => {}) {
 
     onProgress(result);
     let status = result;
-    while (status.status === "queued" || status.status === "running") {
+    while (status.status === "pending" || status.status === "running") {
         await new Promise(resolve => setTimeout(resolve, 500));
         const statusResponse = await apiFetch(
             `/simulation/${encodeURIComponent(result.job_id)}`
@@ -89,7 +90,9 @@ export async function runSimulation(request, onProgress = () => {}) {
         throw new Error(status.error || "The simulation failed.");
     }
     if (status.status !== "completed" || !status.result) {
+        console.log(status.status, status.result)
         throw new Error("The server returned an unknown simulation status.");
+
     }
 
     return status.result;
