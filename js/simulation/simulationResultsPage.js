@@ -28,42 +28,19 @@ function formatNumber(value, fractionDigits = 2) {
         : "Unavailable";
 }
 
-function getGoalWishAverages(wishesSpentByIteration) {
-    const totals = new Map();
-    const counts = new Map();
-
-    if (!Array.isArray(wishesSpentByIteration)) {
-        return new Map();
-    }
-
-    for (const iteration of wishesSpentByIteration) {
-        if (!iteration || typeof iteration !== "object" || Array.isArray(iteration)) {
-            continue;
-        }
-
-        for (const [goalName, wishes] of Object.entries(iteration)) {
-            if (!Number.isFinite(wishes)) {
-                continue;
-            }
-            totals.set(goalName, (totals.get(goalName) ?? 0) + wishes);
-            counts.set(goalName, (counts.get(goalName) ?? 0) + 1);
-        }
-    }
-
-    return new Map(
-        [...totals].map(([goalName, total]) => [
-            goalName,
-            total / counts.get(goalName)
-        ])
-    );
-}
-
 function appendGoalResults(container, result, iterationCount, goals) {
     if (!result.finished_goals || typeof result.finished_goals !== "object") {
         throw new Error("The simulation response is missing goal completion results.");
     }
+    if (
+        !result.average_wishes_per_goal ||
+        typeof result.average_wishes_per_goal !== "object" ||
+        Array.isArray(result.average_wishes_per_goal)
+    ) {
+        throw new Error("The simulation response is missing average wishes per goal.");
+    }
 
-    const wishAverages = getGoalWishAverages(result.total_wishes_spent_in_goal);
+    const wishAverages = result.average_wishes_per_goal;
     const goalPriorityByName = new Map(
         (Array.isArray(goals) ? goals : []).map(goal => [
             goal.goal_name,
@@ -144,7 +121,7 @@ function appendGoalResults(container, result, iterationCount, goals) {
             rateCell.dataset.label = "Chance to get goal";
 
             const wishesCell = document.createElement("td");
-            const averageWishes = wishAverages.get(goalName);
+            const averageWishes = wishAverages[goalName];
             wishesCell.textContent = priority.key === "low"
                 ? "None"
                 : averageWishes === undefined
