@@ -200,7 +200,7 @@ export const LimitedFiveWeaponList = [
     { display: "Astral Vulture's Crimson Plumage", value: "AstralVulturesCrimsonPlumage" },
     { display: "The Daybreak Chronicles", value: "TheDaybreakChronicles" },
     { display: "Golden Frostbound Oath", value: "GoldenFrostboundOath" },
-    { display: "Mitya Signature", value: "MityaSignature" },
+    { display: "Starsealed Edict", value: "StarsealedEdict" },
     { display: "Anastasya Signature", value: "AnastasyaSignature" },
     { display: "Danica Signature", value: "DanicaSignature" },
     { display: "Noy Signature", value: "NoySignature" },
