@@ -8,10 +8,18 @@ import { loadGoals } from "../components/goalCards.js";
 import { getEditGoalFormValues } from "./goalEditor.js";
 
 export async function createGoal() {
+    const newGoal = getGoalFormValues();
+    if (!newGoal.goal_banner) {
+        handleGoalErrorMessage(
+            "No banner selected. Create one with the item in the Banners tab or use the Create Banner button."
+        );
+        return;
+    }
+
     const existingGoals = getExistingGoals()
     const request = {
         existing_goals: existingGoals,
-        new_goal: getGoalFormValues(),
+        new_goal: newGoal,
     };
 
     const response = await apiFetch("/goals", {

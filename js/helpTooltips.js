@@ -1,6 +1,19 @@
 const TOOLTIP_GAP = 0;
 const VIEWPORT_PADDING = 12;
 
+function getFixedPositionOffset(element) {
+    let ancestor = element.parentElement;
+    while (ancestor) {
+        if (getComputedStyle(ancestor).transform !== "none") {
+            const rect = ancestor.getBoundingClientRect();
+            return { left: rect.left, top: rect.top };
+        }
+        ancestor = ancestor.parentElement;
+    }
+
+    return { left: 0, top: 0 };
+}
+
 function positionTooltip(help) {
     const button = help.querySelector(".help-button");
     const tooltip = help.querySelector(".help-tooltip");
@@ -30,9 +43,10 @@ function positionTooltip(help) {
         Math.max(buttonRect.left + (buttonRect.width - tooltipRect.width) / 2, VIEWPORT_PADDING),
         window.innerWidth - tooltipRect.width - VIEWPORT_PADDING
     );
+    const positionOffset = getFixedPositionOffset(tooltip);
 
-    tooltip.style.left = `${left}px`;
-    tooltip.style.top = `${Math.max(minTop, top)}px`;
+    tooltip.style.left = `${left - positionOffset.left}px`;
+    tooltip.style.top = `${Math.max(minTop, top) - positionOffset.top}px`;
 }
 
 export function initializeHelpTooltips() {

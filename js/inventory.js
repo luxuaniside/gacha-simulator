@@ -201,8 +201,8 @@ export const LimitedFiveWeaponList = [
     { display: "The Daybreak Chronicles", value: "TheDaybreakChronicles" },
     { display: "Golden Frostbound Oath", value: "GoldenFrostboundOath" },
     { display: "Starsealed Edict", value: "StarsealedEdict" },
-    { display: "Anastasya Signature", value: "AnastasyaSignature" },
-    { display: "Danica Signature", value: "DanicaSignature" },
+    { display: "Silverdawn", value: "Silverdawn" },
+    { display: "Torrents of Spring", value: "TorrentsOfSpring" },
     { display: "Noy Signature", value: "NoySignature" },
 ];
 
